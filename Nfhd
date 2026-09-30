@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Дискета как устаревшее слово</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    overflow: hidden;
+    height: 100vh;
+  }
+  .presentation {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+  }
+  .slide {
+    position: absolute;
+    inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    animation: fadeIn 0.4s ease;
+  }
+  .slide.active { display: flex; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  h1 {
+    font-size: 3.2em;
+    background: linear-gradient(90deg, #58a6ff, #79c0ff, #a5d6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    line-height: 1.15;
+  }
+  h2 {
+    font-size: 2.4em;
+    color: #58a6ff;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #1f6feb;
+    padding-bottom: 12px;
+    display: inline-block;
+  }
+  h3 {
+    font-size: 1.6em;
+    color: #79c0ff;
+    margin-bottom: 15px;
+  }
+  p, li {
+    font-size: 1.35em;
+    line-height: 1.7;
+    color: #c9d1d9;
+  }
+  ul { list-style: none; margin: 10px 0; }
+  li {
+    margin-bottom: 14px;
+    padding-left: 35px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #58a6ff;
+    position: absolute;
+    left: 10px;
+    font-weight: bold;
+  }
+  .subtitle {
+    font-size: 1.6em;
+    color: #8b949e;
+    margin-top: 15px;
+    font-weight: 300;
+  }
+  .highlight { color: #ffa657; font-weight: 600; }
+  .accent { color: #7ee787; font-weight: 600; }
+  .card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 14px;
+    padding: 25px 30px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+  }
+  .card.green { border-left: 5px solid #3fb950; }
+  .card.blue { border-left: 5px solid #58a6ff; }
+  .card.orange { border-left: 5px solid #ffa657; }
+  .card.red { border-left: 5px solid #f85149; }
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 20px;
+  }
+  .timeline {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    position: relative;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #1f6feb, #58a6ff, #79c0ff);
+    z-index: 0;
+  }
+  .tl-item {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    flex: 1;
+  }
+  .tl-dot {
+    width: 20px; height: 20px;
+    background: #58a6ff;
+    border-radius: 50%;
+    margin: 10px auto 15px;
+    box-shadow: 0 0 15px #58a6ff;
+  }
+  .tl-year {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #79c0ff;
+  }
+  .tl-text {
+    font-size: 1em;
+    color: #8b949e;
+    margin-top: 5px;
+    padding: 0 8px;
+  }
+  .floppy {
+    width: 200px;
+    height: 200px;
+    background: #21262d;
+    border: 3px solid #30363d;
+    border-radius: 8px;
+    position: relative;
+    margin: 30px auto;
+    box-shadow: 0 0 40px rgba(88,166,255,0.3);
+  }
+  .floppy::before {
+    content: "";
+    position: absolute;
+    top: 20px; left: 60px;
+    width: 80px; height: 60px;
+    background: #484f58;
+    border-radius: 4px;
+  }
+  .floppy::after {
+    content: "1.44 MB";
+    position: absolute;
+    bottom: 20px; left: 0; right: 0;
+    text-align: center;
+    color: #8b949e;
+    font-size: 0.9em;
+  }
+  .controls {
+    position: fixed;
+    bottom: 25px;
+    right: 30px;
+    display: flex;
+    gap: 12px;
+    z-index: 100;
+  }
+  .controls button {
+    background: #21262d;
+    color: #e6edf3;
+    border: 1px solid #30363d;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .controls button:hover {
+    background: #1f6feb;
+    border-color: #58a6ff;
+  }
+  .counter {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    color: #8b949e;
+    font-size: 1.1em;
+    z-index: 100;
+  }
+  .progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #1f6feb, #58a6ff);
+    transition: width 0.3s;
+    z-index: 100;
+  }
+  .big-emoji {
+    font-size: 4em;
+    margin-bottom: 20px;
+  }
+  .quote {
+    font-style: italic;
+    color: #8b949e;
+    border-left: 3px solid #58a6ff;
+    padding-left: 20px;
+    margin: 20px 0;
+    font-size: 1.3em;
+  }
+  .icon-row {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    font-size: 3em;
+    justify-content: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<div class="presentation">
+
+  <!-- Слайд 1 -->
+  <div class="slide active">
+    <div style="text-align: center;">
+      <div class="floppy"></div>
+      <h1>Дискета как устаревшее слово</h1>
+      <p class="subtitle">Жизнь и смерть термина в эпоху цифровых технологий</p>
+      <p style="margin-top:40px; color:#8b949e;">Почему мы перестали «сохранять на дискету»?</p>
+    </div>
+  </div>
+
+  <!-- Слайд 2 -->
+  <div class="slide">
+    <h2>Что значит «устаревшее слово»?</h2>
+    <div class="grid2">
+      <div class="card blue">
+        <h3>📜 Историзм</h3>
+        <p>Слово, обозначающее предмет, который <span class="highlight">исчез из жизни</span>.</p>
+        <p style="margin-top:10px; color:#8b949e;"><em>Примеры: лапти, кольчуга, соха</em></p>
+      </div>
+      <div class="card orange">
+        <h3>🔤 Архаизм</h3>
+        <p>Слово, заменённое современным <span class="highlight">синонимом</span>.</p>
+        <p style="margin-top:10px; color:#8b949e;"><em>Примеры: очи — глаза, чело — лоб</em></p>
+      </div>
+    </div>
+    <div class="card green" style="margin-top:25px;">
+      <p><span class="accent">Дискета</span> — это классический историзм. Предмет почти исчез, а слово осталось только в истории или в шутках.</p>
+    </div>
+  </div>
+
+  <!-- Слайд 3 -->
+  <div class="slide">
+    <h2>Краткая история дискеты</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">1970-е</div>
+        <div class="tl-dot"></div>
+        <div class="tl-text">Первые гибкие диски, 8 дюймов</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1980–90-е</div>
+        <div class="tl-dot"></div>
+        <div class="tl-text">Золотой век. 3,5″ = 1,44 МБ</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2000-е</div>
+        <div class="tl-dot"></div>
+        <div class="tl-text">Вытеснение CD, DVD и USB</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2011</div>
+        <div class="tl-dot"></div>
+        <div class="tl-text">Sony прекращает производство</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">Сегодня</div>
+        <div class="tl-dot"></div>
+        <div class="tl-text">Музейный экспонат</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Слайд 4 -->
+  <div class="slide">
+    <h2>Почему слово устарело: технический аспект</h2>
+    <div class="card red">
+      <h3>📉 Объём</h3>
+      <p>1,44 МБ сегодня — размер одной фотографии низкого качества.</p>
+    </div>
+    <div class="card orange">
+      <h3>💥 Надёжность</h3>
+      <p>Магнитный слой размагничивался, дискеты ломались, данные терялись.</p>
+    </div>
+    <div class="card blue">
+      <h3>🐌 Скорость</h3>
+      <p>Передача данных была крайне медленной по современным меркам.</p>
+    </div>
+    <div class="card green">
+      <h3>⚡ Альтернативы</h3>
+      <p>USB-флешки, облачные хранилища, интернет полностью заменили дискеты.</p>
+    </div>
+  </div>
+
+  <!-- Слайд 5 -->
+  <div class="slide">
+    <h2>Лингвистический аспект: судьба слова</h2>
+    <ul>
+      <li><span class="highlight">Частотность:</span> в современном русском языке слово употребляется в сотни раз реже, чем в 1990-х.</li>
+      <li><span class="highlight">Контекст:</span> сейчас используется только в двух случаях:
+        <ul style="margin-top:10px;">
+          <li style="font-size:0.9em;">Исторический — рассказ о прошлом компьютеров</li>
+          <li style="font-size:0.9em;">Ироничный — «Скинь мне файл на дискету» (шутка)</li>
+        </ul>
+      </li>
+      <li><span class="highlight">Деривативы:</span> слово «диск» осталось (жёсткий диск, Discord), а «дискета» стала маркером эпохи.</li>
+    </ul>
+    <div class="quote">Слово ушло в пассивный запас языка — как «лапти» или «соха».</div>
+  </div>
+
+  <!-- Слайд 6 -->
+  <div class="slide">
+    <h2>Дискета как культурный код</h2>
+    <div class="grid2">
+      <div class="card blue">
+        <h3>💾 Икона «Сохранить»</h3>
+        <p>Значок Save в программах до сих пор выглядит как дискета — хотя предмета уже нет.</p>
+      </div>
+      <div class="card green">
+        <h3>😂 Мемы и ностальгия</h3>
+        <p>Дискета — символ 90-х и «старперства» в интернет-культуре.</p>
+      </div>
+      <div class="card orange">
+        <h3>🖥️ Хакерская культура</h3>
+        <p>В фильмах и играх дискета — атрибут старой школы программирования.</p>
+      </div>
+      <div class="card red">
+        <h3>🔒 Символ защиты</h3>
+        <p>«Файл на дискете» = что-то очень маленькое и устаревшее.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Слайд 7 -->
+  <div class="slide">
+    <h2>Вывод</h2>
+    <div class="big-emoji">💾 → 🗑️</div>
+    <ul>
+      <li>Дискета — <span class="accent">историзм</span>: предмет исчез, слово ушло в пассивный запас.</li>
+      <li>Судьба слова повторяет судьбу технологии: <span class="highlight">популярность → забвение</span>.</li>
+      <li>Но образ дискеты остался в интерфейсах, мемах и языке как символ эпохи.</li>
+    </ul>
+    <div class="card green" style="margin-top:30px; text-align:center;">
+      <p style="font-size:1.5em;">Язык — зеркало технологий. Уходит предмет — уходит и слово.</p>
+    </div>
+  </div>
+
+  <!-- Слайд 8 -->
+  <div class="slide">
+    <div style="text-align:center;">
+      <h1>Спасибо за внимание!</h1>
+      <p class="subtitle">Вопросы?</p>
+      <div class="icon-row">💾 🖥️ 📁 🔌</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="counter"><span id="current">1</span> / <span id="total">8</span></div>
+
+<div class="controls">
+  <button onclick="prev()">← Назад</button>
+  <button onclick="next()">Вперёд →</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let index = 0;
+
+  document.getElementById('total').textContent = total;
+
+  function show(i) {
+    slides.forEach(s => s.classList.remove('active'));
+    slides[i].classList.add('active');
+    document.getElementById('current').textContent = i + 1;
+    document.getElementById('progress').style.width = ((i + 1) / total * 100) + '%';
+  }
+
+  function next() {
+    if (index < total - 1) { index++; show(index); }
+  }
+  function prev() {
+    if (index > 0) { index--; show(index); }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') next();
+    if (e.key === 'ArrowLeft') prev();
+  });
+
+  show(0);
+</script>
+
+</body>
+</html>
