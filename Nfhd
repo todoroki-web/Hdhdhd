@@ -15,7 +15,6 @@
     color: #ffffff;
   }
 
-  /* Контейнер держит 16:9 и масштабируется под любой экран/проектор */
   .stage {
     position: fixed;
     inset: 0;
@@ -27,7 +26,7 @@
 
   .canvas {
     width: 100vw;
-    height: 56.25vw; /* 16:9 */
+    height: 56.25vw;
     max-height: 100vh;
     max-width: 177.78vh;
     background: radial-gradient(circle at 20% 20%, #1a2332 0%, #0a0f16 70%);
@@ -52,7 +51,6 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* Типографика — всё в vh/vw, масштабируется под проектор */
   h1 {
     font-size: 6.2vh;
     line-height: 1.15;
@@ -132,7 +130,6 @@
     gap: 2.2vh 2vw;
   }
 
-  /* Таймлайн */
   .timeline {
     display: flex;
     justify-content: space-between;
@@ -176,7 +173,6 @@
     line-height: 1.35;
   }
 
-  /* CSS-дискета */
   .floppy {
     width: 22vh;
     height: 22vh;
@@ -234,7 +230,34 @@
 
   .center { text-align: center; }
 
-  /* Прогресс-бар */
+  /* ---- ФИНАЛЬНЫЙ СЛАЙД С ГИФКОЙ ---- */
+  .final-slide {
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    position: relative;
+  }
+  .final-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .final-caption {
+    position: absolute;
+    bottom: 3vh;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 2.4vh;
+    color: #ffffff;
+    text-shadow: 0 0 1.5vh #000, 0 0 3vh #000;
+    letter-spacing: 2px;
+    font-weight: 600;
+    z-index: 2;
+  }
+
   .progress {
     position: absolute;
     top: 0; left: 0;
@@ -245,7 +268,6 @@
     box-shadow: 0 0 1.5vh #58a6ff;
   }
 
-  /* Счётчик слайдов */
   .counter {
     position: absolute;
     bottom: 2.5vh;
@@ -259,7 +281,6 @@
     border-radius: 2vh;
   }
 
-  /* Кнопки управления — показываются при наведении */
   .controls {
     position: absolute;
     bottom: 2.5vh;
@@ -438,12 +459,23 @@
       </div>
     </div>
 
+    <!-- Слайд 9 — ФИНАЛЬНЫЙ С ГИФКОЙ -->
+    <div class="slide final-slide">
+      <!-- 
+        ⚠️ ВАЖНО: сохрани свою картинку/гифку рядом с HTML-файлом.
+        Имя файла: final.gif
+        Если у тебя .png или .jpg — поменяй расширение в src ниже.
+      -->
+      <img src="final.gif" alt="Финал">
+      <div class="final-caption">Конец презентации</div>
+    </div>
+
     <div class="controls">
       <button onclick="prev()">← Назад</button>
       <button onclick="next()">Вперёд →</button>
     </div>
 
-    <div class="counter"><span id="current">1</span> / <span id="total">8</span></div>
+    <div class="counter"><span id="current">1</span> / <span id="total">9</span></div>
   </div>
 </div>
 
