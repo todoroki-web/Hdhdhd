@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Боярин: слово, которое ушло вместе с эпохой</title>
+<title>Mr. Thompson — A Real Character</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -12,401 +11,467 @@
     height: 100%;
     overflow: hidden;
     background: #000;
-    font-family: 'Georgia', 'Times New Roman', serif;
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    color: #ffffff;
   }
 
-  /* Сцена 16:9, масштабируется под экран */
   .stage {
-    position: absolute;
-    top: 50%; left: 50%;
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+  }
+
+  .canvas {
     width: 100vw;
-    height: 56.25vw; /* 16:9 */
+    height: 56.25vw;
     max-height: 100vh;
     max-width: 177.78vh;
-    transform: translate(-50%, -50%);
-    background: linear-gradient(135deg, #3d2917 0%, #5a3a1f 100%);
+    background: radial-gradient(circle at 20% 20%, #1a2332 0%, #0a0f16 70%);
+    position: relative;
     overflow: hidden;
-    box-shadow: 0 0 80px rgba(201, 169, 97, 0.25);
+    box-shadow: 0 0 60px rgba(0,0,0,0.9);
   }
 
   .slide {
     position: absolute;
     inset: 0;
-    padding: 6vh 7vw;
+    padding: 5vh 6vw;
     display: none;
     flex-direction: column;
     justify-content: center;
-    color: #f4e9d8;
-    animation: fade 0.45s ease;
+    animation: fadeIn 0.35s ease;
   }
-
   .slide.active { display: flex; }
 
-  @keyframes fade {
-    from { opacity: 0; transform: translateX(30px); }
-    to { opacity: 1; transform: translateX(0); }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(1.5vh); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* Крупные шрифты через vw — масштабируются с проектором */
   h1 {
-    font-size: 5.2vw;
-    color: #f0d27a;
-    line-height: 1.15;
-    margin-bottom: 2vh;
-    text-shadow: 0 4px 18px rgba(0,0,0,0.7);
-    font-weight: bold;
+    font-size: 7vh;
+    line-height: 1.12;
+    font-weight: 800;
+    background: linear-gradient(90deg, #6cb6ff, #a5d6ff, #d6ecff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 2.5vh;
+    letter-spacing: -0.5px;
   }
 
   h2 {
-    font-size: 3.6vw;
-    color: #f0d27a;
-    margin-bottom: 3.5vh;
-    padding-bottom: 1.6vh;
-    border-bottom: 0.35vw solid #c9a961;
-    line-height: 1.2;
+    font-size: 5vh;
+    color: #79c0ff;
+    margin-bottom: 4.5vh;
+    padding-bottom: 1.5vh;
+    border-bottom: 0.5vh solid #1f6feb;
+    display: inline-block;
+    font-weight: 700;
+  }
+
+  h3 {
+    font-size: 3.2vh;
+    color: #a5d6ff;
+    margin-bottom: 1.2vh;
+    font-weight: 700;
   }
 
   p, li {
-    font-size: 2.3vw;
-    line-height: 1.5;
-    margin-bottom: 1.6vh;
+    font-size: 2.8vh;
+    line-height: 1.55;
+    color: #e6edf3;
   }
 
   ul { list-style: none; }
-  ul li { padding-left: 2.4vw; position: relative; }
-  ul li::before {
-    content: "❧";
-    color: #c9a961;
+  li {
+    margin-bottom: 2vh;
+    padding-left: 4vh;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #58a6ff;
     position: absolute;
     left: 0;
-    font-size: 2.1vw;
+    font-weight: bold;
+    font-size: 3vh;
   }
 
   .subtitle {
-    font-size: 2.1vw;
-    color: #c9a961;
-    font-style: italic;
-  }
-
-  .highlight {
-    color: #f0d27a;
-    font-weight: bold;
-  }
-
-  .ornament {
-    text-align: center;
-    color: #c9a961;
-    font-size: 2.6vw;
-    margin: 1.5vh 0;
-    letter-spacing: 1vw;
-  }
-
-  /* Крупная центральная мысль */
-  .big-question {
-    font-size: 2.8vw;
-    line-height: 1.4;
-    text-align: center;
-  }
-
-  .big-question span {
-    display: block;
-    margin-top: 2.5vh;
-    color: #f0d27a;
-    font-size: 3.6vw;
-    font-weight: bold;
-  }
-
-  /* Две колонки */
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3vw;
+    font-size: 3.4vh;
+    color: #b0b8c1;
     margin-top: 1.5vh;
+    font-weight: 300;
+    line-height: 1.4;
   }
+
+  .highlight { color: #ffb84d; font-weight: 700; }
+  .accent    { color: #7ee787; font-weight: 700; }
+  .word      { color: #ffa657; font-weight: 800; }
 
   .card {
-    background: rgba(0,0,0,0.35);
-    border-left: 0.45vw solid #c9a961;
-    padding: 2.4vh 2vw;
-    border-radius: 0.6vw;
+    background: rgba(22, 27, 34, 0.85);
+    border: 0.15vh solid #30363d;
+    border-radius: 1.5vh;
+    padding: 2.5vh 2.5vw;
+    margin-bottom: 2vh;
+    box-shadow: 0 1vh 3vh rgba(0,0,0,0.5);
+  }
+  .card.green  { border-left: 0.8vh solid #3fb950; }
+  .card.blue   { border-left: 0.8vh solid #58a6ff; }
+  .card.orange { border-left: 0.8vh solid #ffa657; }
+  .card.red    { border-left: 0.8vh solid #f85149; }
+
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5vh 2.5vw;
+    margin-bottom: 2vh;
   }
 
-  .card h3 {
-    color: #f0d27a;
-    margin-bottom: 1.4vh;
-    font-size: 2.4vw;
+  .grid3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2vh 2vw;
   }
 
-  /* Навигация — тонкая, внизу */
-  .nav {
-    position: absolute;
-    bottom: 1.8vh;
-    left: 0;
-    width: 100%;
+  .emblem {
+    width: 20vh;
+    height: 20vh;
+    margin: 0 auto 3.5vh;
+    background: radial-gradient(circle at 50% 40%, #6cb6ff 0%, #1f6feb 60%, #0a2747 100%);
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 6vh rgba(108,182,255,0.55), inset 0 0 3vh rgba(0,0,0,0.6);
     display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9vh;
+    color: #0a0f16;
+    font-weight: 900;
+    text-shadow: 0 0.3vh 0 rgba(255,255,255,0.25);
+  }
+
+  .quote {
+    font-style: italic;
+    color: #b0b8c1;
+    border-left: 0.8vh solid #58a6ff;
+    padding-left: 2vw;
+    margin: 2vh 0 0;
+    font-size: 2.7vh;
+    line-height: 1.5;
+  }
+
+  .big-emoji {
+    font-size: 11vh;
+    text-align: center;
+    margin-bottom: 3vh;
+    letter-spacing: 2vw;
+  }
+
+  .icon-row {
+    display: flex;
+    gap: 3vw;
+    margin-top: 5vh;
+    font-size: 7vh;
+    justify-content: center;
+  }
+
+  .center { text-align: center; }
+
+  .final-slide {
+    padding: 0;
     justify-content: center;
     align-items: center;
-    gap: 2vw;
-    z-index: 10;
-    opacity: 0.35;
-    transition: opacity 0.3s;
+    background: #000;
+    position: relative;
+  }
+  .final-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .final-caption {
+    position: absolute;
+    bottom: 3vh;
+    left: 0; right: 0;
+    text-align: center;
+    font-size: 2.4vh;
+    color: #ffffff;
+    text-shadow: 0 0 1.5vh #000, 0 0 3vh #000;
+    letter-spacing: 2px;
+    font-weight: 600;
+    z-index: 2;
   }
 
-  .nav:hover { opacity: 1; }
-
-  .nav button {
-    background: #c9a961;
-    color: #2b1d12;
-    border: none;
-    padding: 0.8vh 1.6vw;
-    font-size: 1.3vw;
-    font-family: inherit;
-    font-weight: bold;
-    border-radius: 0.4vw;
-    cursor: pointer;
-    transition: 0.2s;
+  .progress {
+    position: absolute;
+    top: 0; left: 0;
+    height: 0.8vh;
+    background: linear-gradient(90deg, #1f6feb, #58a6ff, #79c0ff);
+    transition: width 0.3s;
+    z-index: 100;
+    box-shadow: 0 0 1.5vh #58a6ff;
   }
-
-  .nav button:hover { background: #f0d27a; }
-  .nav button:disabled { opacity: 0.3; cursor: not-allowed; }
 
   .counter {
-    color: #f0d27a;
-    font-size: 1.2vw;
-    min-width: 4vw;
-    text-align: center;
-  }
-
-  /* Подсказка на первом слайде */
-  .hint {
     position: absolute;
     bottom: 2vh;
-    right: 2vw;
-    color: #c9a961;
-    font-size: 1.1vw;
-    opacity: 0.7;
-    font-style: italic;
+    right: 2.5vw;
+    color: #8b949e;
+    font-size: 2vh;
+    z-index: 100;
+    letter-spacing: 1px;
+    background: rgba(0,0,0,0.5);
+    padding: 0.6vh 1.2vw;
+    border-radius: 2vh;
+  }
+
+  .controls {
+    position: absolute;
+    bottom: 2vh;
+    left: 2.5vw;
+    display: flex;
+    gap: 0.8vw;
+    z-index: 100;
+    opacity: 0.25;
+    transition: opacity 0.3s;
+  }
+  .controls:hover { opacity: 1; }
+  .controls button {
+    background: rgba(33, 38, 45, 0.9);
+    color: #e6edf3;
+    border: 0.15vh solid #30363d;
+    padding: 0.9vh 1.3vw;
+    font-size: 2vh;
+    border-radius: 0.8vh;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .controls button:hover {
+    background: #1f6feb;
+    border-color: #58a6ff;
   }
 </style>
 </head>
 <body>
 
 <div class="stage">
+  <div class="canvas" id="canvas">
+    <div class="progress" id="progress"></div>
 
-  <!-- 1 -->
-  <div class="slide active">
-    <h1>Боярин: слово, которое ушло вместе с эпохой</h1>
-    <div class="ornament">❧ ❧ ❧</div>
-    <p class="subtitle">Презентация по русскому языку и истории</p>
-    <div class="hint">→ стрелка или пробел — листать</div>
-  </div>
-
-  <!-- 2 -->
-  <div class="slide">
-    <h2>Может ли слово пережить свою эпоху?</h2>
-    <p>Мы знаем, кто такой боярин.<br>Но можем ли мы встретить боярина сегодня?</p>
-    <div class="ornament">❧</div>
-    <div class="big-question">
-      Нет.
-      <span>Потому что исчезло не только слово —<br>исчезла целая эпоха.</span>
-    </div>
-  </div>
-
-  <!-- 3 -->
-  <div class="slide">
-    <h2>Что означает слово?</h2>
-    <p><span class="highlight">Боярин</span> — в Древней Руси и Русском государстве до начала XVIII века:</p>
-    <ul>
-      <li>знатный человек;</li>
-      <li>крупный землевладелец;</li>
-      <li>член Боярской думы;</li>
-      <li>советник князя, воевода или наместник.</li>
-    </ul>
-    <div class="ornament">❧</div>
-    <p>Но боярин — это не просто «богатый». Это человек, у которого было <span class="highlight">место в системе власти</span>.</p>
-  </div>
-
-  <!-- 4 -->
-  <div class="slide">
-    <h2>Кто такой боярин?</h2>
-    <div class="two-col">
-      <div class="card">
-        <h3>Внешний облик</h3>
-        <ul>
-          <li>тяжёлая шуба;</li>
-          <li>высокая шапка;</li>
-          <li>окладистая борода.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Образ жизни</h3>
-        <ul>
-          <li>терем и вотчина;</li>
-          <li>челядь и богатство;</li>
-          <li>место в Боярской думе.</li>
-        </ul>
+    <!-- SLIDE 1. TITLE -->
+    <div class="slide active">
+      <div class="center">
+        <div class="emblem">👤</div>
+        <h1>Mr. Thompson</h1>
+        <p class="subtitle">A mysterious man from a small town</p>
+        <p style="margin-top:4vh; color:#8b949e; font-size:2.6vh;">A real character with a story</p>
       </div>
     </div>
-    <p style="margin-top:3vh;">Он — не персонаж сказки. Он — <span class="highlight">свидетель другой России</span>.</p>
-  </div>
 
-  <!-- 5 -->
-  <div class="slide">
-    <h2>Почему слово устарело?</h2>
-    <p>Не потому, что люди перестали его говорить.<br>А потому, что <span class="highlight">исчезло само боярство</span>.</p>
-    <div class="ornament">❧</div>
-    <ul>
-      <li>Пётр I изменил государство;</li>
-      <li>появились дворяне, чины, титулы;</li>
-      <li>Боярская дума ушла в прошлое.</li>
-    </ul>
-    <p style="margin-top:2.5vh;">Слово осталось как тень.</p>
-  </div>
-
-  <!-- 6 -->
-  <div class="slide">
-    <h2>Архаизм или историзм?</h2>
-    <div class="two-col">
-      <div class="card">
-        <h3>Архаизм</h3>
-        <p>У предмета есть современное название.</p>
-        <p><em>Очи — глаза.<br>Ланиты — щёки.</em></p>
-      </div>
-      <div class="card">
-        <h3>Историзм</h3>
-        <p>Предмет исчез, современного названия нет.</p>
-        <p><em>Боярин — ?</em></p>
+    <!-- SLIDE 2. INTRODUCTION -->
+    <div class="slide">
+      <h2>Who is Mr. Thompson?</h2>
+      <ul>
+        <li>He lives in a <span class="highlight">small town</span>.</li>
+        <li>He is a <span class="highlight">mysterious</span> man — nobody knows much about him.</li>
+        <li>People notice him at once — he is not an ordinary person.</li>
+        <li>He has a story behind his face.</li>
+      </ul>
+      <div class="card blue" style="margin-top:2.5vh;">
+        <p>Some people you forget. <span class="accent">Mr. Thompson — you remember forever.</span></p>
       </div>
     </div>
-    <p style="margin-top:3.5vh;text-align:center;font-size:2.8vw;">
-      «Боярин» — <span class="highlight">историзм</span>.
-    </p>
-  </div>
 
-  <!-- 7 -->
-  <div class="slide">
-    <h2>Родня слова</h2>
-    <ul>
-      <li>боярыня;</li>
-      <li>боярский;</li>
-      <li>боярство;</li>
-      <li>Боярская дума;</li>
-      <li>боярский сын.</li>
-    </ul>
-    <div class="ornament">❧</div>
-    <p>Некоторые из них тоже историзмы.<br>А слово <span class="highlight">«боярский»</span> иногда живёт в иронии:</p>
-    <p><em>«боярский вид», «живёт как боярин».</em></p>
-  </div>
-
-  <!-- 8 -->
-  <div class="slide">
-    <h2>Где слово живёт сегодня?</h2>
-    <ul>
-      <li>в исторических романах;</li>
-      <li>в фильмах о Древней Руси;</li>
-      <li>в играх и фэнтези;</li>
-      <li>в музеях и на уроках истории;</li>
-      <li>в шутках и иронии.</li>
-    </ul>
-    <div class="ornament">❧</div>
-    <p><em>«Ну ты и боярин!»</em> — не про древнерусскую знать, а про важный вид или богатство.</p>
-  </div>
-
-  <!-- 9 -->
-  <div class="slide">
-    <h2>Осторожно: барин и боярин</h2>
-    <div class="two-col">
-      <div class="card">
-        <h3>Боярин</h3>
-        <p>Древнерусская знать.</p>
-        <p><strong>X–XVII века</strong></p>
+    <!-- SLIDE 3. AGE / HEIGHT / BUILD -->
+    <div class="slide">
+      <h2>Age, height, and build</h2>
+      <div class="grid3">
+        <div class="card blue">
+          <h3>🎂 Age</h3>
+          <p>About <span class="highlight">50 years old</span>.</p>
+        </div>
+        <div class="card green">
+          <h3>📏 Height</h3>
+          <p><span class="highlight">Average height</span> — not tall, not short.</p>
+        </div>
+        <div class="card orange">
+          <h3>💪 Build</h3>
+          <p><span class="highlight">Very strong</span> — like he works out a lot.</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>Барин</h3>
-        <p>Дворянин, помещик, господин.</p>
-        <p><strong>XVIII–XIX века</strong></p>
+      <div class="card" style="margin-top:2.5vh;">
+        <p>He looks like a man who has lived a hard life — and survived it.</p>
       </div>
     </div>
-    <p style="margin-top:3.5vh;text-align:center;">Разные эпохи. Разные сословия. Разные слова.</p>
-  </div>
 
-  <!-- 10 -->
-  <div class="slide">
-    <h2>Слово-музей</h2>
-    <p>Боярин — это не просто устаревшее слово.<br>Это <span class="highlight">историзм</span>, который хранит целую эпоху.</p>
-    <div class="ornament">❧</div>
-    <p>Его нельзя заменить современным словом, потому что в современности нет такого человека.</p>
-    <p style="margin-top:2.5vh;">Мы берём его с полки, как музейный экспонат, и говорим:</p>
-    <p style="text-align:center;font-size:3vw;color:#f0d27a;margin-top:2vh;"><em>«Когда-то это было жизнью».</em></p>
-  </div>
+    <!-- SLIDE 4. EYES -->
+    <div class="slide">
+      <h2>His eyes</h2>
+      <div class="big-emoji">👁️</div>
+      <ul>
+        <li>He has <span class="highlight">bright blue eyes</span>.</li>
+        <li>They are <span class="word">piercing</span> — sharp and intense.</li>
+        <li>When he looks at you, it feels like he can <span class="accent">see right through you</span>.</li>
+      </ul>
+      <div class="quote">"His bright blue eyes seemed to see right through you."</div>
+    </div>
 
-  <!-- 11 -->
-  <div class="slide">
-    <h2>Проверь себя</h2>
-    <ul>
-      <li>Почему «боярин» — историзм, а не архаизм?</li>
-      <li>Какие родственные слова вы знаете?</li>
-      <li>В каком значении слово может встретиться сегодня?</li>
-      <li>Чем боярин отличается от барина?</li>
-      <li>Почему слово не исчезло полностью?</li>
-    </ul>
-  </div>
+    <!-- SLIDE 5. HAIR -->
+    <div class="slide">
+      <h2>His hair</h2>
+      <div class="grid2">
+        <div class="card blue">
+          <h3>Color</h3>
+          <p><span class="highlight">Gray</span> — the color of age and experience.</p>
+        </div>
+        <div class="card green">
+          <h3>Style</h3>
+          <p><span class="highlight">Short</span> and <span class="highlight">neat</span> — always well-combed.</p>
+        </div>
+      </div>
+      <div class="card" style="margin-top:1vh;">
+        <p>His neat hair shows he still cares about how he looks.</p>
+      </div>
+    </div>
 
-  <!-- 12 -->
-  <div class="slide">
-    <h2>Итог</h2>
-    <p><span class="highlight">Боярин</span> — устаревшее слово, но не мёртвое.<br>Оно живёт в языке как память.</p>
-    <div class="ornament">❧</div>
-    <p>Как знак того, что у России было другое устройство, другие герои и другие титулы.</p>
-    <p style="text-align:center;font-size:3vw;color:#f0d27a;margin-top:3vh;">
-      Слово ушло.<br>Эпоха осталась в нём.
-    </p>
-  </div>
+    <!-- SLIDE 6. CLOTHES -->
+    <div class="slide">
+      <h2>His clothes</h2>
+      <ul>
+        <li>He always wears a <span class="highlight">worn leather jacket</span>.</li>
+        <li>The jacket is old — but it <span class="accent">looks good on him</span>.</li>
+        <li>It fits his character: tough, simple, and lived-in.</li>
+      </ul>
+      <div class="card orange" style="margin-top:2.5vh;">
+        <p>The jacket is like a second skin — you cannot imagine him without it.</p>
+      </div>
+    </div>
 
-  <!-- Навигация -->
-  <div class="nav">
-    <button id="prev">←</button>
-    <div class="counter"><span id="cur">1</span> / <span id="total">12</span></div>
-    <button id="next">→</button>
-  </div>
+    <!-- SLIDE 7. SPECIAL FEATURES -->
+    <div class="slide">
+      <h2>Special features</h2>
+      <div class="grid2">
+        <div class="card blue">
+          <h3>🟤 Birthmark</h3>
+          <p>A small <span class="highlight">birthmark on his left cheek</span>.</p>
+        </div>
+        <div class="card red">
+          <h3>⚡ Scar</h3>
+          <p>A thin <span class="highlight">scar from his ear to his lip</span>.</p>
+        </div>
+      </div>
+      <div class="card green" style="margin-top:1vh;">
+        <p>These two marks make him easy to recognize in a crowd — <span class="accent">you can spot him at once</span>.</p>
+      </div>
+    </div>
 
+    <!-- SLIDE 8. POSTURE & HABITS -->
+    <div class="slide">
+      <h2>Posture and habits</h2>
+      <ul>
+        <li>He walks a little <span class="highlight">stooped</span> — as if the years have caught up with him.</li>
+        <li>When he is thinking, he <span class="highlight">taps his right index finger on his lips</span>.</li>
+        <li>It looks like he is trying to <span class="accent">remember something</span>.</li>
+      </ul>
+      <div class="quote">A small habit — but it says a lot about him.</div>
+    </div>
+
+    <!-- SLIDE 9. WHY DETAILS MATTER -->
+    <div class="slide">
+      <h2>Why these details matter</h2>
+      <div class="grid2">
+        <div class="card red">
+          <h3>❌ Without details</h3>
+          <p>Just <em>"a middle-aged man"</em> — boring and forgettable.</p>
+        </div>
+        <div class="card green">
+          <h3>✅ With details</h3>
+          <p>A <span class="accent">real character</span> with a face, a history, and a story.</p>
+        </div>
+      </div>
+      <div class="card blue" style="margin-top:1vh;">
+        <p>Small details turn a person into a <span class="highlight">memorable character</span>.</p>
+      </div>
+    </div>
+
+    <!-- SLIDE 10. SUMMARY -->
+    <div class="slide">
+      <h2>Mr. Thompson in one look</h2>
+      <ul>
+        <li>🎂 About <span class="highlight">50 years old</span>, strong, average height.</li>
+        <li>👁️ <span class="highlight">Piercing blue eyes</span> that see through you.</li>
+        <li>💇 <span class="highlight">Gray, short, neat hair</span>.</li>
+        <li>🧥 A <span class="highlight">worn leather jacket</span>.</li>
+        <li>🟤 A <span class="highlight">birthmark</span> and a <span class="highlight">scar</span>.</li>
+        <li>🚶 A little <span class="highlight">stooped</span>; taps his finger when thinking.</li>
+      </ul>
+    </div>
+
+    <!-- SLIDE 11. THANK YOU -->
+    <div class="slide">
+      <div class="center">
+        <h1>Thank you!</h1>
+        <p class="subtitle">Any questions?</p>
+        <div class="icon-row">👤 👁️ 🧥 🎩</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 12. FINAL GIF -->
+    <div class="slide final-slide">
+      <!-- ⚠️ Put final.gif in the same folder as this HTML file -->
+      <img src="final.gif" alt="The End" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+      <div style="display:none; color:#4a5568; text-align:center;">
+        <span style="font-size:10vh; display:block; margin-bottom:2vh;">🎬</span>
+        <div style="font-size:2.4vh; letter-spacing:1px;">PUT final.gif HERE</div>
+      </div>
+      <div class="final-caption">The End</div>
+    </div>
+
+    <div class="controls">
+      <button onclick="prev()">← Prev</button>
+      <button onclick="next()">Next →</button>
+    </div>
+
+    <div class="counter"><span id="current">1</span> / <span id="total">12</span></div>
+  </div>
 </div>
 
 <script>
   const slides = document.querySelectorAll('.slide');
-  const prevBtn = document.getElementById('prev');
-  const nextBtn = document.getElementById('next');
-  const cur = document.getElementById('cur');
-  const total = document.getElementById('total');
+  const total = slides.length;
   let index = 0;
 
-  total.textContent = slides.length;
+  document.getElementById('total').textContent = total;
 
   function show(i) {
-    slides[index].classList.remove('active');
-    index = Math.max(0, Math.min(slides.length - 1, i));
-    slides[index].classList.add('active');
-    cur.textContent = index + 1;
-    prevBtn.disabled = index === 0;
-    nextBtn.disabled = index === slides.length - 1;
+    slides.forEach(s => s.classList.remove('active'));
+    slides[i].classList.add('active');
+    document.getElementById('current').textContent = i + 1;
+    document.getElementById('progress').style.width = ((i + 1) / total * 100) + '%';
   }
 
-  prevBtn.addEventListener('click', () => show(index - 1));
-  nextBtn.addEventListener('click', () => show(index + 1));
+  function next() { if (index < total - 1) { index++; show(index); } }
+  function prev() { if (index > 0) { index--; show(index); } }
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
-      e.preventDefault();
-      show(index + 1);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown' || e.key === 'Enter') {
+      e.preventDefault(); next();
     }
-    if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-      e.preventDefault();
-      show(index - 1);
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp' || e.key === 'Backspace') {
+      e.preventDefault(); prev();
     }
-    if (e.key === 'Home') show(0);
-    if (e.key === 'End') show(slides.length - 1);
-    if (e.key === 'F11' || (e.key === 'f' && e.ctrlKey)) {
-      // встроенный fullscreen браузера
+    if (e.key === 'Home') { index = 0; show(0); }
+    if (e.key === 'End')  { index = total - 1; show(index); }
+    if (e.key === 'f' || e.key === 'F' || e.key === 'F11') {
+      e.preventDefault();
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
     }
   });
 
