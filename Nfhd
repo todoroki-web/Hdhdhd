@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Дискета как устаревшее слово</title>
+<title>Внешняя политика Ивана Грозного</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -52,8 +52,8 @@
   }
 
   h1 {
-    font-size: 6.2vh;
-    line-height: 1.15;
+    font-size: 7vh;
+    line-height: 1.12;
     font-weight: 800;
     background: linear-gradient(90deg, #6cb6ff, #a5d6ff, #d6ecff);
     -webkit-background-clip: text;
@@ -63,9 +63,9 @@
   }
 
   h2 {
-    font-size: 4.6vh;
+    font-size: 5vh;
     color: #79c0ff;
-    margin-bottom: 4vh;
+    margin-bottom: 4.5vh;
     padding-bottom: 1.5vh;
     border-bottom: 0.5vh solid #1f6feb;
     display: inline-block;
@@ -73,14 +73,14 @@
   }
 
   h3 {
-    font-size: 3vh;
+    font-size: 3.2vh;
     color: #a5d6ff;
-    margin-bottom: 1.5vh;
+    margin-bottom: 1.2vh;
     font-weight: 700;
   }
 
   p, li {
-    font-size: 2.6vh;
+    font-size: 2.8vh;
     line-height: 1.55;
     color: #e6edf3;
   }
@@ -88,7 +88,7 @@
   ul { list-style: none; }
   li {
     margin-bottom: 2vh;
-    padding-left: 3.5vh;
+    padding-left: 4vh;
     position: relative;
   }
   li::before {
@@ -97,11 +97,11 @@
     position: absolute;
     left: 0;
     font-weight: bold;
-    font-size: 2.8vh;
+    font-size: 3vh;
   }
 
   .subtitle {
-    font-size: 3.2vh;
+    font-size: 3.4vh;
     color: #b0b8c1;
     margin-top: 1.5vh;
     font-weight: 300;
@@ -110,37 +110,45 @@
 
   .highlight { color: #ffb84d; font-weight: 700; }
   .accent    { color: #7ee787; font-weight: 700; }
+  .date      { color: #ffa657; font-weight: 800; }
 
   .card {
     background: rgba(22, 27, 34, 0.85);
     border: 0.15vh solid #30363d;
-    border-radius: 1.2vh;
-    padding: 2.2vh 2.5vw;
-    margin-bottom: 1.8vh;
+    border-radius: 1.5vh;
+    padding: 2.5vh 2.5vw;
+    margin-bottom: 2vh;
     box-shadow: 0 1vh 3vh rgba(0,0,0,0.5);
   }
-  .card.green  { border-left: 0.7vh solid #3fb950; }
-  .card.blue   { border-left: 0.7vh solid #58a6ff; }
-  .card.orange { border-left: 0.7vh solid #ffa657; }
-  .card.red    { border-left: 0.7vh solid #f85149; }
+  .card.green  { border-left: 0.8vh solid #3fb950; }
+  .card.blue   { border-left: 0.8vh solid #58a6ff; }
+  .card.orange { border-left: 0.8vh solid #ffa657; }
+  .card.red    { border-left: 0.8vh solid #f85149; }
 
   .grid2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2.2vh 2vw;
+    gap: 2.5vh 2.5vw;
+    margin-bottom: 2vh;
+  }
+
+  .grid3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2vh 2vw;
   }
 
   .timeline {
     display: flex;
     justify-content: space-between;
-    margin-top: 6vh;
+    margin-top: 4vh;
     position: relative;
     padding: 0 1vw;
   }
   .timeline::before {
     content: "";
     position: absolute;
-    top: 4.2vh;
+    top: 4.5vh;
     left: 3vw; right: 3vw;
     height: 0.4vh;
     background: linear-gradient(90deg, #1f6feb, #58a6ff, #79c0ff);
@@ -154,10 +162,10 @@
     padding: 0 0.8vw;
   }
   .tl-year {
-    font-size: 2.6vh;
+    font-size: 2.8vh;
     font-weight: 800;
-    color: #a5d6ff;
-    margin-bottom: 0.8vh;
+    color: #ffa657;
+    margin-bottom: 1vh;
   }
   .tl-dot {
     width: 2.2vh; height: 2.2vh;
@@ -168,53 +176,40 @@
     border: 0.4vh solid #0a0f16;
   }
   .tl-text {
-    font-size: 1.9vh;
+    font-size: 2vh;
     color: #b0b8c1;
     line-height: 1.35;
   }
 
-  .floppy {
-    width: 22vh;
-    height: 22vh;
-    background: linear-gradient(145deg, #21262d, #161b22);
-    border: 0.6vh solid #30363d;
-    border-radius: 1vh;
+  .emblem {
+    width: 20vh;
+    height: 20vh;
+    margin: 0 auto 3.5vh;
+    background: radial-gradient(circle at 50% 40%, #d4a24a 0%, #8b6914 60%, #4a3a08 100%);
+    border-radius: 50%;
     position: relative;
-    margin: 0 auto 3vh;
-    box-shadow: 0 0 6vh rgba(88,166,255,0.45), inset 0 0 3vh rgba(0,0,0,0.5);
-  }
-  .floppy::before {
-    content: "";
-    position: absolute;
-    top: 15%; left: 30%;
-    width: 40%; height: 30%;
-    background: #484f58;
-    border-radius: 0.6vh;
-    box-shadow: inset 0 0 1vh #000;
-  }
-  .floppy::after {
-    content: "1.44 MB";
-    position: absolute;
-    bottom: 12%; left: 0; right: 0;
-    text-align: center;
-    color: #79c0ff;
-    font-size: 1.6vh;
-    letter-spacing: 2px;
-    font-weight: 600;
+    box-shadow: 0 0 6vh rgba(212,162,74,0.55), inset 0 0 3vh rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10vh;
+    color: #1a1408;
+    font-weight: 900;
+    text-shadow: 0 0.3vh 0 rgba(255,255,255,0.25);
   }
 
   .quote {
     font-style: italic;
     color: #b0b8c1;
-    border-left: 0.7vh solid #58a6ff;
+    border-left: 0.8vh solid #58a6ff;
     padding-left: 2vw;
-    margin: 2.5vh 0 0;
-    font-size: 2.6vh;
+    margin: 2vh 0 0;
+    font-size: 2.7vh;
     line-height: 1.5;
   }
 
   .big-emoji {
-    font-size: 10vh;
+    font-size: 11vh;
     text-align: center;
     margin-bottom: 3vh;
     letter-spacing: 2vw;
@@ -230,7 +225,7 @@
 
   .center { text-align: center; }
 
-  /* ---- ФИНАЛЬНЫЙ СЛАЙД С ГИФКОЙ ---- */
+  /* ====== ФИНАЛЬНЫЙ СЛАЙД С ГИФКОЙ ====== */
   .final-slide {
     padding: 0;
     justify-content: center;
@@ -247,8 +242,7 @@
   .final-caption {
     position: absolute;
     bottom: 3vh;
-    left: 0;
-    right: 0;
+    left: 0; right: 0;
     text-align: center;
     font-size: 2.4vh;
     color: #ffffff;
@@ -270,23 +264,23 @@
 
   .counter {
     position: absolute;
-    bottom: 2.5vh;
-    right: 3vw;
+    bottom: 2vh;
+    right: 2.5vw;
     color: #8b949e;
     font-size: 2vh;
     z-index: 100;
     letter-spacing: 1px;
-    background: rgba(0,0,0,0.4);
-    padding: 0.6vh 1.4vw;
+    background: rgba(0,0,0,0.5);
+    padding: 0.6vh 1.2vw;
     border-radius: 2vh;
   }
 
   .controls {
     position: absolute;
-    bottom: 2.5vh;
-    left: 3vw;
+    bottom: 2vh;
+    left: 2.5vw;
     display: flex;
-    gap: 1vw;
+    gap: 0.8vw;
     z-index: 100;
     opacity: 0.25;
     transition: opacity 0.3s;
@@ -296,7 +290,7 @@
     background: rgba(33, 38, 45, 0.9);
     color: #e6edf3;
     border: 0.15vh solid #30363d;
-    padding: 1vh 1.5vw;
+    padding: 0.9vh 1.3vw;
     font-size: 2vh;
     border-radius: 0.8vh;
     cursor: pointer;
@@ -314,159 +308,141 @@
   <div class="canvas" id="canvas">
     <div class="progress" id="progress"></div>
 
-    <!-- Слайд 1 -->
+    <!-- СЛАЙД 1. ТИТУЛ -->
     <div class="slide active">
       <div class="center">
-        <div class="floppy"></div>
-        <h1>Дискета как устаревшее слово</h1>
-        <p class="subtitle">Жизнь и смерть термина в эпоху цифровых технологий</p>
-        <p style="margin-top:4vh; color:#8b949e; font-size:2.4vh;">Почему мы перестали «сохранять на дискету»?</p>
+        <div class="emblem">☦</div>
+        <h1>Внешняя политика Ивана Грозного</h1>
+        <p class="subtitle">Расширение границ Русского государства в XVI веке</p>
+        <p style="margin-top:4vh; color:#8b949e; font-size:2.6vh;">1533–1584 • От Казани до Сибири</p>
       </div>
     </div>
 
-    <!-- Слайд 2 -->
+    <!-- СЛАЙД 2. НАПРАВЛЕНИЯ -->
     <div class="slide">
-      <h2>Что значит «устаревшее слово»?</h2>
-      <div class="grid2">
+      <h2>Три главных направления</h2>
+      <div class="grid3">
         <div class="card blue">
-          <h3>📜 Историзм</h3>
-          <p>Слово, обозначающее предмет, который <span class="highlight">исчез из жизни</span>.</p>
-          <p style="margin-top:1.5vh; color:#8b949e;"><em>Примеры: лапти, кольчуга, соха</em></p>
+          <h3>🕌 Восточное</h3>
+          <p>Борьба с Казанским и Астраханским ханствами. Контроль над Волжским торговым путём.</p>
         </div>
         <div class="card orange">
-          <h3>🔤 Архаизм</h3>
-          <p>Слово, заменённое современным <span class="highlight">синонимом</span>.</p>
-          <p style="margin-top:1.5vh; color:#8b949e;"><em>Примеры: очи — глаза, чело — лоб</em></p>
-        </div>
-      </div>
-      <div class="card green" style="margin-top:2.5vh;">
-        <p><span class="accent">Дискета</span> — это классический историзм. Предмет почти исчез, а слово осталось только в истории или в шутках.</p>
-      </div>
-    </div>
-
-    <!-- Слайд 3 -->
-    <div class="slide">
-      <h2>Краткая история дискеты</h2>
-      <div class="timeline">
-        <div class="tl-item">
-          <div class="tl-year">1970-е</div>
-          <div class="tl-dot"></div>
-          <div class="tl-text">Первые гибкие диски, 8 дюймов</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-year">1980–90-е</div>
-          <div class="tl-dot"></div>
-          <div class="tl-text">Золотой век. 3,5″ = 1,44 МБ</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-year">2000-е</div>
-          <div class="tl-dot"></div>
-          <div class="tl-text">Вытеснение CD, DVD и USB</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-year">2011</div>
-          <div class="tl-dot"></div>
-          <div class="tl-text">Sony прекращает производство</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-year">Сегодня</div>
-          <div class="tl-dot"></div>
-          <div class="tl-text">Музейный экспонат</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Слайд 4 -->
-    <div class="slide">
-      <h2>Почему слово устарело: технический аспект</h2>
-      <div class="card red">
-        <h3>📉 Объём</h3>
-        <p>1,44 МБ сегодня — размер одной фотографии низкого качества.</p>
-      </div>
-      <div class="card orange">
-        <h3>💥 Надёжность</h3>
-        <p>Магнитный слой размагничивался, дискеты ломались, данные терялись.</p>
-      </div>
-      <div class="card blue">
-        <h3>🐌 Скорость</h3>
-        <p>Передача данных была крайне медленной по современным меркам.</p>
-      </div>
-      <div class="card green">
-        <h3>⚡ Альтернативы</h3>
-        <p>USB-флешки, облачные хранилища, интернет полностью заменили дискеты.</p>
-      </div>
-    </div>
-
-    <!-- Слайд 5 -->
-    <div class="slide">
-      <h2>Лингвистический аспект: судьба слова</h2>
-      <ul>
-        <li><span class="highlight">Частотность:</span> в современном русском языке слово употребляется в сотни раз реже, чем в 1990-х.</li>
-        <li><span class="highlight">Контекст:</span> сейчас используется только в двух случаях:
-          <ul style="margin-top:1.5vh;">
-            <li style="font-size:2.2vh;">Исторический — рассказ о прошлом компьютеров</li>
-            <li style="font-size:2.2vh;">Ироничный — «Скинь мне файл на дискету» (шутка)</li>
-          </ul>
-        </li>
-        <li><span class="highlight">Деривативы:</span> слово «диск» осталось (жёсткий диск, Discord), а «дискета» стала маркером эпохи.</li>
-      </ul>
-      <div class="quote">Слово ушло в пассивный запас языка — как «лапти» или «соха».</div>
-    </div>
-
-    <!-- Слайд 6 -->
-    <div class="slide">
-      <h2>Дискета как культурный код</h2>
-      <div class="grid2">
-        <div class="card blue">
-          <h3>💾 Икона «Сохранить»</h3>
-          <p>Значок Save в программах до сих пор выглядит как дискета — хотя предмета уже нет.</p>
+          <h3>⚔️ Западное</h3>
+          <p>Ливонская война за выход к Балтийскому морю и земли Прибалтики.</p>
         </div>
         <div class="card green">
-          <h3>😂 Мемы и ностальгия</h3>
-          <p>Дискета — символ 90-х и «старперства» в интернет-культуре.</p>
+          <h3>🛡️ Южное</h3>
+          <p>Оборона от набегов Крымского ханства и Османской империи.</p>
         </div>
-        <div class="card orange">
-          <h3>🖥️ Хакерская культура</h3>
-          <p>В фильмах и играх дискета — атрибут старой школы программирования.</p>
+      </div>
+    </div>
+
+    <!-- СЛАЙД 3. КАЗАНЬ -->
+    <div class="slide">
+      <h2>Взятие Казани — <span class="date">1552</span></h2>
+      <ul>
+        <li>Казанское ханство совершало постоянные набеги на русские земли.</li>
+        <li><span class="highlight">2 октября 1552 года</span> — Казань взята штурмом после 43-дневной осады.</li>
+        <li>Иван Грозный лично участвовал в походе.</li>
+        <li>Ханство присоединено к Русскому государству.</li>
+      </ul>
+      <div class="card green" style="margin-top:2.5vh;">
+        <p><span class="accent">Итог:</span> устранена угроза с востока, открыт путь на Урал и в Сибирь.</p>
+      </div>
+    </div>
+
+    <!-- СЛАЙД 4. АСТРАХАНЬ -->
+    <div class="slide">
+      <h2>Присоединение Астрахани — <span class="date">1556</span></h2>
+      <ul>
+        <li>Астраханское ханство контролировало нижнее течение Волги.</li>
+        <li>В <span class="highlight">1554</span> — первый поход, установление зависимости ханства от Москвы.</li>
+        <li>В <span class="highlight">1556</span> — окончательное присоединение.</li>
+        <li>Вся Волга — от истоков до Каспия — стала русской рекой.</li>
+      </ul>
+      <div class="card blue" style="margin-top:2.5vh;">
+        <p><span class="accent">Итог:</span> контроль над торговым путём в Персию и Среднюю Азию.</p>
+      </div>
+    </div>
+
+    <!-- СЛАЙД 5. ЛИВОНСКАЯ ВОЙНА -->
+    <div class="slide">
+      <h2>Ливонская война — <span class="date">1558–1583</span></h2>
+      <ul>
+        <li><span class="highlight">Причина:</span> выход к Балтийскому морю для торговли с Европой.</li>
+        <li><span class="highlight">1558–1561:</span> разгром Ливонского ордена, взятие Нарвы и Дерпта.</li>
+        <li><span class="highlight">1563:</span> взятие Полоцка.</li>
+        <li>Против России — Литва, Польша, Швеция, Дания.</li>
+        <li><span class="highlight">1582–1583:</span> Ям-Запольское и Плюсское перемирия.</li>
+      </ul>
+      <div class="card red" style="margin-top:2vh;">
+        <p><span style="color:#f85149; font-weight:700;">Итог:</span> война проиграна. Россия потеряла часть земель и не получила выхода к Балтике.</p>
+      </div>
+    </div>
+
+    <!-- СЛАЙД 6. КРЫМ -->
+    <div class="slide">
+      <h2>Южное направление: борьба с Крымом</h2>
+      <ul>
+        <li>Крымское ханство — вассал Османской империи.</li>
+        <li>Постоянные набеги на южные земли Руси.</li>
+        <li><span class="highlight">1571</span> — сожжение Москвы ханом Девлет-Гиреем.</li>
+        <li><span class="highlight">1572</span> — победа русских войск в битве при Молодях.</li>
+        <li>Для защиты построена <span class="accent">Большая засечная черта</span> — линия обороны.</li>
+      </ul>
+    </div>
+
+    <!-- СЛАЙД 7. СИБИРЬ -->
+    <div class="slide">
+      <h2>Поход Ермака в Сибирь — <span class="date">1581–1585</span></h2>
+      <ul>
+        <li>Сибирское ханство — сосед на востоке.</li>
+        <li>Купцы <span class="highlight">Строгановы</span> финансируют поход казаков.</li>
+        <li>Атаман <span class="highlight">Ермак Тимофеевич</span> возглавляет отряд.</li>
+        <li><span class="highlight">1582</span> — разгром хана Кучума, взятие Кашлыка.</li>
+        <li>Начало присоединения Сибири к России.</li>
+      </ul>
+      <div class="card green" style="margin-top:2.5vh;">
+        <p><span class="accent">Значение:</span> начало освоения огромных территорий за Уралом.</p>
+      </div>
+    </div>
+
+    <!-- СЛАЙД 8. ИТОГИ -->
+    <div class="slide">
+      <h2>Итоги внешней политики</h2>
+      <div class="grid2">
+        <div class="card green">
+          <h3>✅ Успехи</h3>
+          <p>Присоединены Казанское и Астраханское ханства. Начато освоение Сибири. Волга стала русской рекой.</p>
         </div>
         <div class="card red">
-          <h3>🔒 Символ защиты</h3>
-          <p>«Файл на дискете» = что-то очень маленькое и устаревшее.</p>
+          <h3>❌ Неудачи</h3>
+          <p>Ливонская война проиграна. Выход к Балтике не получен. Южные земли страдали от набегов.</p>
         </div>
       </div>
-    </div>
-
-    <!-- Слайд 7 -->
-    <div class="slide">
-      <h2>Вывод</h2>
-      <div class="big-emoji">💾 → 🗑️</div>
-      <ul>
-        <li>Дискета — <span class="accent">историзм</span>: предмет исчез, слово ушло в пассивный запас.</li>
-        <li>Судьба слова повторяет судьбу технологии: <span class="highlight">популярность → забвение</span>.</li>
-        <li>Но образ дискеты остался в интерфейсах, мемах и языке как символ эпохи.</li>
-      </ul>
-      <div class="card green" style="margin-top:3vh; text-align:center;">
-        <p style="font-size:2.8vh;">Язык — зеркало технологий. Уходит предмет — уходит и слово.</p>
+      <div class="card blue" style="margin-top:1vh;">
+        <h3>📌 Значение</h3>
+        <p>Россия превратилась в <span class="highlight">многонациональное государство</span> и крупную евразийскую державу.</p>
       </div>
     </div>
 
-    <!-- Слайд 8 -->
+    <!-- СЛАЙД 9. СПАСИБО -->
     <div class="slide">
       <div class="center">
         <h1>Спасибо за внимание!</h1>
         <p class="subtitle">Вопросы?</p>
-        <div class="icon-row">💾 🖥️ 📁 🔌</div>
+        <div class="icon-row">👑 ⚔️ 🛡️ 🗺️</div>
       </div>
     </div>
 
-    <!-- Слайд 9 — ФИНАЛЬНЫЙ С ГИФКОЙ -->
+    <!-- СЛАЙД 10. ФИНАЛЬНАЯ ГИФКА -->
     <div class="slide final-slide">
-      <!-- 
-        ⚠️ ВАЖНО: сохрани свою картинку/гифку рядом с HTML-файлом.
-        Имя файла: final.gif
-        Если у тебя .png или .jpg — поменяй расширение в src ниже.
-      -->
-      <img src="final.gif" alt="Финал">
+      <!-- ⚠️ Положи файл final.gif рядом с HTML -->
+      <img src="final.gif" alt="Финал" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+      <div style="display:none; color:#4a5568; text-align:center;">
+        <span style="font-size:10vh; display:block; margin-bottom:2vh;">🎬</span>
+        <div style="font-size:2.4vh; letter-spacing:1px;">ПОЛОЖИ СЮДА final.gif</div>
+      </div>
       <div class="final-caption">Конец презентации</div>
     </div>
 
@@ -475,7 +451,7 @@
       <button onclick="next()">Вперёд →</button>
     </div>
 
-    <div class="counter"><span id="current">1</span> / <span id="total">9</span></div>
+    <div class="counter"><span id="current">1</span> / <span id="total">10</span></div>
   </div>
 </div>
 
