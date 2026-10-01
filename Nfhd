@@ -734,7 +734,7 @@
 
     <!-- ============ SLIDE 12 — FINAL GIF ============ -->
     <div class="slide final-slide">
-      <img src="final.gif" alt="The End" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+      <img src="final.jpg" alt="The End" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
       <div style="display:none; color:#4a5568; text-align:center;">
         <span style="font-size:10vh; display:block; margin-bottom:2vh;">🎬</span>
         <div style="font-size:2.4vh; letter-spacing:1px;">PUT final.gif HERE</div>
