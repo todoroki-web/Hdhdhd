@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Mr. Thompson — A Real Character</title>
+<title>Case File: Mr. Thompson</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -11,8 +11,8 @@
     height: 100%;
     overflow: hidden;
     background: #000;
-    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-    color: #ffffff;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    color: #f5ecd7;
   }
 
   .stage {
@@ -29,159 +29,263 @@
     height: 56.25vw;
     max-height: 100vh;
     max-width: 177.78vh;
-    background: radial-gradient(circle at 20% 20%, #1a2332 0%, #0a0f16 70%);
+    background:
+      radial-gradient(circle at 15% 10%, rgba(212,162,74,0.10) 0%, transparent 45%),
+      radial-gradient(circle at 85% 90%, rgba(198,123,62,0.10) 0%, transparent 45%),
+      linear-gradient(140deg, #241811 0%, #150d07 55%, #0a0603 100%);
     position: relative;
     overflow: hidden;
-    box-shadow: 0 0 60px rgba(0,0,0,0.9);
+    box-shadow: 0 0 80px rgba(0,0,0,0.95);
+  }
+
+  /* Тонкая зернистая текстура "бумаги" */
+  .canvas::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 3px),
+      repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 1px, transparent 1px, transparent 2px);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Золотая рамка "досье" */
+  .canvas::after {
+    content: "";
+    position: absolute;
+    inset: 2.2vh 1.4vw;
+    border: 0.15vh solid rgba(212,162,74,0.28);
+    pointer-events: none;
+    z-index: 2;
   }
 
   .slide {
     position: absolute;
     inset: 0;
-    padding: 5vh 6vw;
+    padding: 6vh 6.5vw;
     display: none;
     flex-direction: column;
     justify-content: center;
-    animation: fadeIn 0.35s ease;
+    z-index: 5;
+    animation: fadeIn 0.45s ease;
   }
   .slide.active { display: flex; }
 
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(1.5vh); }
+    from { opacity: 0; transform: translateY(1.8vh); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  h1 {
-    font-size: 7vh;
-    line-height: 1.12;
+  /* Верхняя строка "CASE FILE" на каждом слайде */
+  .file-bar {
+    position: absolute;
+    top: 4vh;
+    left: 6.5vw;
+    right: 6.5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.7vh;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #a89579;
+    font-weight: 600;
+  }
+  .file-bar .num {
+    color: #d4a24a;
     font-weight: 800;
-    background: linear-gradient(90deg, #6cb6ff, #a5d6ff, #d6ecff);
+  }
+  .file-bar::after {
+    content: "";
+    position: absolute;
+    bottom: -1.2vh;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(212,162,74,0.6), transparent);
+  }
+
+  /* Заголовки — серифные, editorial */
+  h1 {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 8vh;
+    font-weight: 700;
+    line-height: 1.05;
+    color: #f5ecd7;
+    letter-spacing: -0.5px;
+    margin-bottom: 2vh;
+  }
+  h1 .accent {
+    background: linear-gradient(90deg, #e8b958, #d4a24a);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 2.5vh;
-    letter-spacing: -0.5px;
+    font-style: italic;
   }
 
   h2 {
-    font-size: 5vh;
-    color: #79c0ff;
-    margin-bottom: 4.5vh;
-    padding-bottom: 1.5vh;
-    border-bottom: 0.5vh solid #1f6feb;
-    display: inline-block;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 5.4vh;
     font-weight: 700;
+    color: #f5ecd7;
+    line-height: 1.1;
+    margin-bottom: 3vh;
+    letter-spacing: -0.3px;
+  }
+
+  h2 .roman {
+    color: #d4a24a;
+    font-style: italic;
+    font-weight: 400;
+    margin-right: 1.5vw;
+    font-size: 4.6vh;
   }
 
   h3 {
-    font-size: 3.2vh;
-    color: #a5d6ff;
-    margin-bottom: 1.2vh;
+    font-family: 'Georgia', serif;
+    font-size: 2.9vh;
+    color: #e8b958;
     font-weight: 700;
+    margin-bottom: 1vh;
+    letter-spacing: 0.5px;
   }
 
   p, li {
-    font-size: 2.8vh;
+    font-size: 2.6vh;
     line-height: 1.55;
-    color: #e6edf3;
+    color: #e5d9bf;
   }
 
   ul { list-style: none; }
   li {
     margin-bottom: 2vh;
-    padding-left: 4vh;
+    padding-left: 4.5vh;
     position: relative;
   }
   li::before {
-    content: "▸";
-    color: #58a6ff;
+    content: "—";
+    color: #d4a24a;
     position: absolute;
     left: 0;
+    top: 0;
     font-weight: bold;
     font-size: 3vh;
   }
 
   .subtitle {
-    font-size: 3.4vh;
-    color: #b0b8c1;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 3.2vh;
+    color: #c1ac8a;
     margin-top: 1.5vh;
-    font-weight: 300;
-    line-height: 1.4;
+    font-weight: 400;
+    line-height: 1.45;
   }
 
-  .highlight { color: #ffb84d; font-weight: 700; }
-  .accent    { color: #7ee787; font-weight: 700; }
-  .word      { color: #ffa657; font-weight: 800; }
+  .highlight { color: #f4d06f; font-weight: 700; }
+  .accent    { color: #e8b958; font-weight: 700; font-style: italic; }
+  .word      { color: #e89a5a; font-weight: 700; }
 
+  /* Карточка-документ */
   .card {
-    background: rgba(22, 27, 34, 0.85);
-    border: 0.15vh solid #30363d;
-    border-radius: 1.5vh;
-    padding: 2.5vh 2.5vw;
-    margin-bottom: 2vh;
-    box-shadow: 0 1vh 3vh rgba(0,0,0,0.5);
+    background: linear-gradient(135deg, rgba(42,29,18,0.7), rgba(20,13,7,0.7));
+    border: 1px solid rgba(212,162,74,0.35);
+    border-radius: 0.3vh;
+    padding: 2.4vh 2vw;
+    margin-bottom: 1.8vh;
+    position: relative;
+    box-shadow: 0 1.5vh 3vh rgba(0,0,0,0.55), inset 0 0 3vh rgba(212,162,74,0.05);
   }
-  .card.green  { border-left: 0.8vh solid #3fb950; }
-  .card.blue   { border-left: 0.8vh solid #58a6ff; }
-  .card.orange { border-left: 0.8vh solid #ffa657; }
-  .card.red    { border-left: 0.8vh solid #f85149; }
+  /* Уголки карточки */
+  .card::before, .card::after {
+    content: "";
+    position: absolute;
+    width: 1.2vh;
+    height: 1.2vh;
+    border: 1px solid #d4a24a;
+  }
+  .card::before { top: 0.6vh; left: 0.6vh; border-right: none; border-bottom: none; }
+  .card::after  { bottom: 0.6vh; right: 0.6vh; border-left: none; border-top: none; }
+
+  .card.green  { border-left: 0.5vh solid #8fa87a; }
+  .card.blue   { border-left: 0.5vh solid #7fa8b8; }
+  .card.orange { border-left: 0.5vh solid #d4a24a; }
+  .card.red    { border-left: 0.5vh solid #c9705e; }
 
   .grid2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2.5vh 2.5vw;
-    margin-bottom: 2vh;
+    gap: 2.2vh 2vw;
+    margin-bottom: 1.8vh;
   }
 
   .grid3 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 2vh 2vw;
+    gap: 2vh 1.6vw;
   }
 
+  /* Медальон на титуле */
   .emblem {
-    width: 20vh;
-    height: 20vh;
+    width: 22vh;
+    height: 22vh;
     margin: 0 auto 3.5vh;
-    background: radial-gradient(circle at 50% 40%, #6cb6ff 0%, #1f6feb 60%, #0a2747 100%);
     border-radius: 50%;
+    background:
+      radial-gradient(circle at 50% 40%, rgba(232,185,88,0.25) 0%, rgba(42,29,18,0.9) 70%);
+    border: 0.3vh solid #d4a24a;
     position: relative;
-    box-shadow: 0 0 6vh rgba(108,182,255,0.55), inset 0 0 3vh rgba(0,0,0,0.6);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 9vh;
-    color: #0a0f16;
-    font-weight: 900;
-    text-shadow: 0 0.3vh 0 rgba(255,255,255,0.25);
+    font-family: 'Georgia', serif;
+    font-size: 11vh;
+    color: #e8b958;
+    font-weight: 700;
+    box-shadow:
+      0 0 8vh rgba(212,162,74,0.35),
+      inset 0 0 4vh rgba(0,0,0,0.7);
+  }
+  /* Пунктирная окружность вокруг */
+  .emblem::before {
+    content: "";
+    position: absolute;
+    inset: -1.6vh;
+    border-radius: 50%;
+    border: 1px dashed rgba(212,162,74,0.4);
   }
 
   .quote {
+    font-family: 'Georgia', serif;
     font-style: italic;
-    color: #b0b8c1;
-    border-left: 0.8vh solid #58a6ff;
-    padding-left: 2vw;
+    color: #c1ac8a;
+    border-left: 0.4vh solid #d4a24a;
+    padding: 0.6vh 0 0.6vh 2vw;
     margin: 2vh 0 0;
-    font-size: 2.7vh;
-    line-height: 1.5;
+    font-size: 2.6vh;
+    line-height: 1.55;
   }
 
   .big-emoji {
-    font-size: 11vh;
+    font-size: 10vh;
     text-align: center;
     margin-bottom: 3vh;
-    letter-spacing: 2vw;
+    letter-spacing: 1vw;
+    filter: drop-shadow(0 0 3vh rgba(212,162,74,0.5));
   }
 
   .icon-row {
     display: flex;
     gap: 3vw;
-    margin-top: 5vh;
-    font-size: 7vh;
+    margin-top: 4.5vh;
+    font-size: 6vh;
     justify-content: center;
+    filter: drop-shadow(0 0 3vh rgba(212,162,74,0.4));
   }
 
   .center { text-align: center; }
 
+  /* Финальный слайд */
   .final-slide {
     padding: 0;
     justify-content: center;
@@ -197,64 +301,70 @@
   }
   .final-caption {
     position: absolute;
-    bottom: 3vh;
+    bottom: 3.5vh;
     left: 0; right: 0;
     text-align: center;
-    font-size: 2.4vh;
-    color: #ffffff;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 2.8vh;
+    color: #f5ecd7;
     text-shadow: 0 0 1.5vh #000, 0 0 3vh #000;
-    letter-spacing: 2px;
-    font-weight: 600;
+    letter-spacing: 4px;
+    font-weight: 700;
     z-index: 2;
   }
 
+  /* Прогресс — тонкая золотая линия */
   .progress {
     position: absolute;
     top: 0; left: 0;
-    height: 0.8vh;
-    background: linear-gradient(90deg, #1f6feb, #58a6ff, #79c0ff);
-    transition: width 0.3s;
+    height: 0.4vh;
+    background: linear-gradient(90deg, #c67b3e, #d4a24a, #f4d06f);
+    transition: width 0.35s;
     z-index: 100;
-    box-shadow: 0 0 1.5vh #58a6ff;
+    box-shadow: 0 0 1.5vh rgba(244,208,111,0.8);
   }
 
   .counter {
     position: absolute;
-    bottom: 2vh;
-    right: 2.5vw;
-    color: #8b949e;
+    bottom: 3vh;
+    right: 3vw;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    color: #a89579;
     font-size: 2vh;
     z-index: 100;
-    letter-spacing: 1px;
-    background: rgba(0,0,0,0.5);
-    padding: 0.6vh 1.2vw;
-    border-radius: 2vh;
+    letter-spacing: 2px;
   }
+  .counter #current { color: #d4a24a; font-weight: 700; }
 
   .controls {
     position: absolute;
-    bottom: 2vh;
-    left: 2.5vw;
+    bottom: 3vh;
+    left: 3vw;
     display: flex;
     gap: 0.8vw;
     z-index: 100;
-    opacity: 0.25;
+    opacity: 0.3;
     transition: opacity 0.3s;
   }
   .controls:hover { opacity: 1; }
   .controls button {
-    background: rgba(33, 38, 45, 0.9);
-    color: #e6edf3;
-    border: 0.15vh solid #30363d;
-    padding: 0.9vh 1.3vw;
-    font-size: 2vh;
-    border-radius: 0.8vh;
+    background: rgba(42,29,18,0.8);
+    color: #e8b958;
+    border: 1px solid rgba(212,162,74,0.5);
+    padding: 0.8vh 1.2vw;
+    font-size: 1.9vh;
+    font-family: 'Georgia', serif;
+    border-radius: 0.3vh;
     cursor: pointer;
     transition: all 0.2s;
+    letter-spacing: 1px;
   }
   .controls button:hover {
-    background: #1f6feb;
-    border-color: #58a6ff;
+    background: #d4a24a;
+    color: #150d07;
+    border-color: #f4d06f;
   }
 </style>
 </head>
@@ -266,53 +376,69 @@
 
     <!-- SLIDE 1. TITLE -->
     <div class="slide active">
-      <div class="center">
-        <div class="emblem">👤</div>
-        <h1>Mr. Thompson</h1>
+      <div class="file-bar">
+        <span>Confidential · Case File</span>
+        <span><span class="num">№ 01</span> / 12</span>
+      </div>
+      <div class="center" style="margin-top:4vh;">
+        <div class="emblem">T</div>
+        <h1>Mr. <span class="accent">Thompson</span></h1>
         <p class="subtitle">A mysterious man from a small town</p>
-        <p style="margin-top:4vh; color:#8b949e; font-size:2.6vh;">A real character with a story</p>
+        <p style="margin-top:3.5vh; color:#a89579; font-size:2.4vh; letter-spacing:6px; text-transform:uppercase;">A real character · A story to tell</p>
       </div>
     </div>
 
     <!-- SLIDE 2. INTRODUCTION -->
     <div class="slide">
-      <h2>Who is Mr. Thompson?</h2>
+      <div class="file-bar">
+        <span>The Subject</span>
+        <span><span class="num">№ 02</span> / 12</span>
+      </div>
+      <h2><span class="roman">I.</span>Who is Mr. Thompson?</h2>
       <ul>
-        <li>He lives in a <span class="highlight">small town</span>.</li>
-        <li>He is a <span class="highlight">mysterious</span> man — nobody knows much about him.</li>
+        <li>He lives in a <span class="highlight">small town</span> — quiet and ordinary.</li>
+        <li>He is a <span class="highlight">mysterious</span> man. Nobody knows much about him.</li>
         <li>People notice him at once — he is not an ordinary person.</li>
-        <li>He has a story behind his face.</li>
+        <li>You can feel there is a <span class="accent">story behind his face</span>.</li>
       </ul>
-      <div class="card blue" style="margin-top:2.5vh;">
+      <div class="card orange" style="margin-top:2.5vh;">
         <p>Some people you forget. <span class="accent">Mr. Thompson — you remember forever.</span></p>
       </div>
     </div>
 
     <!-- SLIDE 3. AGE / HEIGHT / BUILD -->
     <div class="slide">
-      <h2>Age, height, and build</h2>
+      <div class="file-bar">
+        <span>Physical Profile</span>
+        <span><span class="num">№ 03</span> / 12</span>
+      </div>
+      <h2><span class="roman">II.</span>Age, height, and build</h2>
       <div class="grid3">
-        <div class="card blue">
-          <h3>🎂 Age</h3>
+        <div class="card orange">
+          <h3>Age</h3>
           <p>About <span class="highlight">50 years old</span>.</p>
         </div>
-        <div class="card green">
-          <h3>📏 Height</h3>
+        <div class="card orange">
+          <h3>Height</h3>
           <p><span class="highlight">Average height</span> — not tall, not short.</p>
         </div>
         <div class="card orange">
-          <h3>💪 Build</h3>
+          <h3>Build</h3>
           <p><span class="highlight">Very strong</span> — like he works out a lot.</p>
         </div>
       </div>
       <div class="card" style="margin-top:2.5vh;">
-        <p>He looks like a man who has lived a hard life — and survived it.</p>
+        <p>He looks like a man who has lived a hard life — <span class="accent">and survived it</span>.</p>
       </div>
     </div>
 
     <!-- SLIDE 4. EYES -->
     <div class="slide">
-      <h2>His eyes</h2>
+      <div class="file-bar">
+        <span>The Eyes</span>
+        <span><span class="num">№ 04</span> / 12</span>
+      </div>
+      <h2><span class="roman">III.</span>His eyes</h2>
       <div class="big-emoji">👁️</div>
       <ul>
         <li>He has <span class="highlight">bright blue eyes</span>.</li>
@@ -324,56 +450,72 @@
 
     <!-- SLIDE 5. HAIR -->
     <div class="slide">
-      <h2>His hair</h2>
+      <div class="file-bar">
+        <span>Hair</span>
+        <span><span class="num">№ 05</span> / 12</span>
+      </div>
+      <h2><span class="roman">IV.</span>His hair</h2>
       <div class="grid2">
-        <div class="card blue">
-          <h3>Color</h3>
-          <p><span class="highlight">Gray</span> — the color of age and experience.</p>
+        <div class="card orange">
+          <h3>Colour</h3>
+          <p><span class="highlight">Gray</span> — the colour of age and experience.</p>
         </div>
-        <div class="card green">
+        <div class="card orange">
           <h3>Style</h3>
           <p><span class="highlight">Short</span> and <span class="highlight">neat</span> — always well-combed.</p>
         </div>
       </div>
       <div class="card" style="margin-top:1vh;">
-        <p>His neat hair shows he still cares about how he looks.</p>
+        <p>His neat hair shows he still <span class="accent">cares about how he looks</span>.</p>
       </div>
     </div>
 
     <!-- SLIDE 6. CLOTHES -->
     <div class="slide">
-      <h2>His clothes</h2>
+      <div class="file-bar">
+        <span>Clothing</span>
+        <span><span class="num">№ 06</span> / 12</span>
+      </div>
+      <h2><span class="roman">V.</span>His clothes</h2>
       <ul>
         <li>He always wears a <span class="highlight">worn leather jacket</span>.</li>
         <li>The jacket is old — but it <span class="accent">looks good on him</span>.</li>
         <li>It fits his character: tough, simple, and lived-in.</li>
       </ul>
       <div class="card orange" style="margin-top:2.5vh;">
-        <p>The jacket is like a second skin — you cannot imagine him without it.</p>
+        <p>The jacket is like a second skin — <span class="accent">you cannot imagine him without it</span>.</p>
       </div>
     </div>
 
     <!-- SLIDE 7. SPECIAL FEATURES -->
     <div class="slide">
-      <h2>Special features</h2>
+      <div class="file-bar">
+        <span>Identifying Marks</span>
+        <span><span class="num">№ 07</span> / 12</span>
+      </div>
+      <h2><span class="roman">VI.</span>Special features</h2>
       <div class="grid2">
-        <div class="card blue">
-          <h3>🟤 Birthmark</h3>
+        <div class="card orange">
+          <h3>Birthmark</h3>
           <p>A small <span class="highlight">birthmark on his left cheek</span>.</p>
         </div>
         <div class="card red">
-          <h3>⚡ Scar</h3>
+          <h3>Scar</h3>
           <p>A thin <span class="highlight">scar from his ear to his lip</span>.</p>
         </div>
       </div>
       <div class="card green" style="margin-top:1vh;">
-        <p>These two marks make him easy to recognize in a crowd — <span class="accent">you can spot him at once</span>.</p>
+        <p>These two marks make him easy to recognize — <span class="accent">you can spot him at once</span>.</p>
       </div>
     </div>
 
     <!-- SLIDE 8. POSTURE & HABITS -->
     <div class="slide">
-      <h2>Posture and habits</h2>
+      <div class="file-bar">
+        <span>Behaviour</span>
+        <span><span class="num">№ 08</span> / 12</span>
+      </div>
+      <h2><span class="roman">VII.</span>Posture and habits</h2>
       <ul>
         <li>He walks a little <span class="highlight">stooped</span> — as if the years have caught up with him.</li>
         <li>When he is thinking, he <span class="highlight">taps his right index finger on his lips</span>.</li>
@@ -384,53 +526,64 @@
 
     <!-- SLIDE 9. WHY DETAILS MATTER -->
     <div class="slide">
-      <h2>Why these details matter</h2>
+      <div class="file-bar">
+        <span>The Method</span>
+        <span><span class="num">№ 09</span> / 12</span>
+      </div>
+      <h2><span class="roman">VIII.</span>Why these details matter</h2>
       <div class="grid2">
         <div class="card red">
-          <h3>❌ Without details</h3>
+          <h3>Without details</h3>
           <p>Just <em>"a middle-aged man"</em> — boring and forgettable.</p>
         </div>
         <div class="card green">
-          <h3>✅ With details</h3>
+          <h3>With details</h3>
           <p>A <span class="accent">real character</span> with a face, a history, and a story.</p>
         </div>
       </div>
-      <div class="card blue" style="margin-top:1vh;">
+      <div class="card orange" style="margin-top:1vh;">
         <p>Small details turn a person into a <span class="highlight">memorable character</span>.</p>
       </div>
     </div>
 
     <!-- SLIDE 10. SUMMARY -->
     <div class="slide">
-      <h2>Mr. Thompson in one look</h2>
+      <div class="file-bar">
+        <span>Summary</span>
+        <span><span class="num">№ 10</span> / 12</span>
+      </div>
+      <h2><span class="roman">IX.</span>Mr. Thompson at a glance</h2>
       <ul>
-        <li>🎂 About <span class="highlight">50 years old</span>, strong, average height.</li>
-        <li>👁️ <span class="highlight">Piercing blue eyes</span> that see through you.</li>
-        <li>💇 <span class="highlight">Gray, short, neat hair</span>.</li>
-        <li>🧥 A <span class="highlight">worn leather jacket</span>.</li>
-        <li>🟤 A <span class="highlight">birthmark</span> and a <span class="highlight">scar</span>.</li>
-        <li>🚶 A little <span class="highlight">stooped</span>; taps his finger when thinking.</li>
+        <li>About <span class="highlight">50 years old</span>, strong, average height.</li>
+        <li><span class="highlight">Piercing blue eyes</span> that see through you.</li>
+        <li><span class="highlight">Gray, short, neat hair</span>.</li>
+        <li>A <span class="highlight">worn leather jacket</span>.</li>
+        <li>A <span class="highlight">birthmark</span> and a <span class="highlight">scar</span>.</li>
+        <li>A little <span class="highlight">stooped</span>; taps his finger when thinking.</li>
       </ul>
     </div>
 
     <!-- SLIDE 11. THANK YOU -->
     <div class="slide">
+      <div class="file-bar">
+        <span>End of File</span>
+        <span><span class="num">№ 11</span> / 12</span>
+      </div>
       <div class="center">
-        <h1>Thank you!</h1>
+        <h1>Thank <span class="accent">you</span>.</h1>
         <p class="subtitle">Any questions?</p>
-        <div class="icon-row">👤 👁️ 🧥 🎩</div>
+        <div class="icon-row">🕵️ 👁️ 🧥 🎩</div>
       </div>
     </div>
 
     <!-- SLIDE 12. FINAL GIF -->
     <div class="slide final-slide">
-      <!-- ⚠️ Put final.gif in the same folder as this HTML file -->
       <img src="final.gif" alt="The End" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
       <div style="display:none; color:#4a5568; text-align:center;">
         <span style="font-size:10vh; display:block; margin-bottom:2vh;">🎬</span>
         <div style="font-size:2.4vh; letter-spacing:1px;">PUT final.gif HERE</div>
       </div>
-      <div class="final-caption">The End</div>
+      <div class="final-caption">— The End —</div>
     </div>
 
     <div class="controls">
