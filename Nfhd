@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Case File: Mr. Thompson</title>
+<title>Case File: Mr. Thompson — with Speaker Notes</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -38,7 +38,6 @@
     box-shadow: 0 0 80px rgba(0,0,0,0.95);
   }
 
-  /* Тонкая зернистая текстура "бумаги" */
   .canvas::before {
     content: "";
     position: absolute;
@@ -50,7 +49,6 @@
     z-index: 1;
   }
 
-  /* Золотая рамка "досье" */
   .canvas::after {
     content: "";
     position: absolute;
@@ -77,7 +75,6 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* Верхняя строка "CASE FILE" на каждом слайде */
   .file-bar {
     position: absolute;
     top: 4vh;
@@ -92,21 +89,16 @@
     color: #a89579;
     font-weight: 600;
   }
-  .file-bar .num {
-    color: #d4a24a;
-    font-weight: 800;
-  }
+  .file-bar .num { color: #d4a24a; font-weight: 800; }
   .file-bar::after {
     content: "";
     position: absolute;
     bottom: -1.2vh;
-    left: 0;
-    right: 0;
+    left: 0; right: 0;
     height: 1px;
     background: linear-gradient(90deg, rgba(212,162,74,0.6), transparent);
   }
 
-  /* Заголовки — серифные, editorial */
   h1 {
     font-family: 'Georgia', 'Times New Roman', serif;
     font-size: 8vh;
@@ -132,7 +124,6 @@
     margin-bottom: 3vh;
     letter-spacing: -0.3px;
   }
-
   h2 .roman {
     color: #d4a24a;
     font-style: italic;
@@ -166,8 +157,7 @@
     content: "—";
     color: #d4a24a;
     position: absolute;
-    left: 0;
-    top: 0;
+    left: 0; top: 0;
     font-weight: bold;
     font-size: 3vh;
   }
@@ -178,7 +168,6 @@
     font-size: 3.2vh;
     color: #c1ac8a;
     margin-top: 1.5vh;
-    font-weight: 400;
     line-height: 1.45;
   }
 
@@ -186,7 +175,6 @@
   .accent    { color: #e8b958; font-weight: 700; font-style: italic; }
   .word      { color: #e89a5a; font-weight: 700; }
 
-  /* Карточка-документ */
   .card {
     background: linear-gradient(135deg, rgba(42,29,18,0.7), rgba(20,13,7,0.7));
     border: 1px solid rgba(212,162,74,0.35);
@@ -196,12 +184,10 @@
     position: relative;
     box-shadow: 0 1.5vh 3vh rgba(0,0,0,0.55), inset 0 0 3vh rgba(212,162,74,0.05);
   }
-  /* Уголки карточки */
   .card::before, .card::after {
     content: "";
     position: absolute;
-    width: 1.2vh;
-    height: 1.2vh;
+    width: 1.2vh; height: 1.2vh;
     border: 1px solid #d4a24a;
   }
   .card::before { top: 0.6vh; left: 0.6vh; border-right: none; border-bottom: none; }
@@ -218,21 +204,17 @@
     gap: 2.2vh 2vw;
     margin-bottom: 1.8vh;
   }
-
   .grid3 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 2vh 1.6vw;
   }
 
-  /* Медальон на титуле */
   .emblem {
-    width: 22vh;
-    height: 22vh;
+    width: 22vh; height: 22vh;
     margin: 0 auto 3.5vh;
     border-radius: 50%;
-    background:
-      radial-gradient(circle at 50% 40%, rgba(232,185,88,0.25) 0%, rgba(42,29,18,0.9) 70%);
+    background: radial-gradient(circle at 50% 40%, rgba(232,185,88,0.25) 0%, rgba(42,29,18,0.9) 70%);
     border: 0.3vh solid #d4a24a;
     position: relative;
     display: flex;
@@ -242,11 +224,8 @@
     font-size: 11vh;
     color: #e8b958;
     font-weight: 700;
-    box-shadow:
-      0 0 8vh rgba(212,162,74,0.35),
-      inset 0 0 4vh rgba(0,0,0,0.7);
+    box-shadow: 0 0 8vh rgba(212,162,74,0.35), inset 0 0 4vh rgba(0,0,0,0.7);
   }
-  /* Пунктирная окружность вокруг */
   .emblem::before {
     content: "";
     position: absolute;
@@ -285,7 +264,6 @@
 
   .center { text-align: center; }
 
-  /* Финальный слайд */
   .final-slide {
     padding: 0;
     justify-content: center;
@@ -294,8 +272,7 @@
     position: relative;
   }
   .final-slide img {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     object-fit: cover;
     display: block;
   }
@@ -314,7 +291,60 @@
     z-index: 2;
   }
 
-  /* Прогресс — тонкая золотая линия */
+  /* ====== SPEAKER NOTES PANEL ====== */
+  .notes {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 0;
+    max-height: 38%;
+    background: linear-gradient(180deg, rgba(20,13,7,0.95), rgba(10,6,3,0.98));
+    border-top: 0.3vh solid #d4a24a;
+    padding: 2vh 4vw 3vh;
+    z-index: 200;
+    transform: translateY(100%);
+    transition: transform 0.35s ease;
+    overflow-y: auto;
+    box-shadow: 0 -2vh 6vh rgba(0,0,0,0.8);
+  }
+  .notes.visible { transform: translateY(0); }
+
+  .notes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5vh;
+    padding-bottom: 1vh;
+    border-bottom: 1px solid rgba(212,162,74,0.3);
+  }
+  .notes-header .label {
+    font-size: 1.7vh;
+    color: #d4a24a;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .notes-header .hint {
+    font-size: 1.5vh;
+    color: #a89579;
+    font-style: italic;
+  }
+  .notes-body {
+    font-family: 'Georgia', serif;
+    font-size: 2.2vh;
+    line-height: 1.6;
+    color: #e5d9bf;
+    font-style: italic;
+  }
+  .notes-body em {
+    color: #f4d06f;
+    font-style: normal;
+    font-weight: 700;
+  }
+  .notes-body strong {
+    color: #e8b958;
+  }
+
+  /* Progress & UI */
   .progress {
     position: absolute;
     top: 0; left: 0;
@@ -345,7 +375,7 @@
     display: flex;
     gap: 0.8vw;
     z-index: 100;
-    opacity: 0.3;
+    opacity: 0.35;
     transition: opacity 0.3s;
   }
   .controls:hover { opacity: 1; }
@@ -366,6 +396,33 @@
     color: #150d07;
     border-color: #f4d06f;
   }
+
+  /* Индикатор, что заметки есть */
+  .notes-badge {
+    position: absolute;
+    bottom: 3vh;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.7vh;
+    color: #a89579;
+    font-style: italic;
+    z-index: 100;
+    letter-spacing: 1px;
+    background: rgba(42,29,18,0.7);
+    padding: 0.5vh 1.2vw;
+    border: 1px solid rgba(212,162,74,0.3);
+    border-radius: 0.3vh;
+    opacity: 0.7;
+  }
+  .notes-badge kbd {
+    color: #e8b958;
+    font-weight: 700;
+    font-family: 'Consolas', monospace;
+    background: rgba(212,162,74,0.15);
+    padding: 0.1vh 0.5vw;
+    border-radius: 0.3vh;
+    border: 1px solid rgba(212,162,74,0.4);
+  }
 </style>
 </head>
 <body>
@@ -374,7 +431,7 @@
   <div class="canvas" id="canvas">
     <div class="progress" id="progress"></div>
 
-    <!-- SLIDE 1. TITLE -->
+    <!-- ============ SLIDE 1 ============ -->
     <div class="slide active">
       <div class="file-bar">
         <span>Confidential · Case File</span>
@@ -386,9 +443,18 @@
         <p class="subtitle">A mysterious man from a small town</p>
         <p style="margin-top:3.5vh; color:#a89579; font-size:2.4vh; letter-spacing:6px; text-transform:uppercase;">A real character · A story to tell</p>
       </div>
+      <div class="notes">
+        <div class="notes-header">
+          <span class="label">Speaker Notes · Slide 1</span>
+          <span class="hint">Press N to hide</span>
+        </div>
+        <div class="notes-body">
+          Good morning, everyone. Today I would like to tell you about a man named <em>Mr. Thompson</em>. He is not a real historical figure — he is a character from a story. But I will show you how a few small details can turn an ordinary man into someone you will never forget. Let's begin.
+        </div>
+      </div>
     </div>
 
-    <!-- SLIDE 2. INTRODUCTION -->
+    <!-- ============ SLIDE 2 ============ -->
     <div class="slide">
       <div class="file-bar">
         <span>The Subject</span>
@@ -404,9 +470,18 @@
       <div class="card orange" style="margin-top:2.5vh;">
         <p>Some people you forget. <span class="accent">Mr. Thompson — you remember forever.</span></p>
       </div>
+      <div class="notes">
+        <div class="notes-header">
+          <span class="label">Speaker Notes · Slide 2</span>
+          <span class="hint">Press N to hide</span>
+        </div>
+        <div class="notes-body">
+          So, who is Mr. Thompson? He lives in a small town — the kind of place where everyone knows each other. But nobody really knows him. He is a mysterious man. People notice him at once because he does not look like everyone else. And when you look at him, you feel there is <em>a story behind his face</em>.
+        </div>
+      </div>
     </div>
 
-    <!-- SLIDE 3. AGE / HEIGHT / BUILD -->
+    <!-- ============ SLIDE 3 ============ -->
     <div class="slide">
       <div class="file-bar">
         <span>Physical Profile</span>
@@ -430,9 +505,18 @@
       <div class="card" style="margin-top:2.5vh;">
         <p>He looks like a man who has lived a hard life — <span class="accent">and survived it</span>.</p>
       </div>
+      <div class="notes">
+        <div class="notes-header">
+          <span class="label">Speaker Notes · Slide 3</span>
+          <span class="hint">Press N to hide</span>
+        </div>
+        <div class="notes-body">
+          Let's start with the basics. He is about <em>fifty years old</em>. He is of average height — not tall, not short. But he is very strong. It looks like he works out a lot. He is the kind of man who has lived a hard life — and survived it.
+        </div>
+      </div>
     </div>
 
-    <!-- SLIDE 4. EYES -->
+    <!-- ============ SLIDE 4 ============ -->
     <div class="slide">
       <div class="file-bar">
         <span>The Eyes</span>
@@ -446,9 +530,18 @@
         <li>When he looks at you, it feels like he can <span class="accent">see right through you</span>.</li>
       </ul>
       <div class="quote">"His bright blue eyes seemed to see right through you."</div>
+      <div class="notes">
+        <div class="notes-header">
+          <span class="label">Speaker Notes · Slide 4</span>
+          <span class="hint">Press N to hide</span>
+        </div>
+        <div class="notes-body">
+          Now, the most important feature — <em>his eyes</em>. He has bright blue eyes. They are piercing — sharp and intense. When he looks at you, it feels like he can see right through you. Like he knows all your secrets, even if you've never said a word.
+        </div>
+      </div>
     </div>
 
-    <!-- SLIDE 5. HAIR -->
+    <!-- ============ SLIDE 5 ============ -->
     <div class="slide">
       <div class="file-bar">
         <span>Hair</span>
@@ -468,9 +561,18 @@
       <div class="card" style="margin-top:1vh;">
         <p>His neat hair shows he still <span class="accent">cares about how he looks</span>.</p>
       </div>
+      <div class="notes">
+        <div class="notes-header">
+          <span class="label">Speaker Notes · Slide 5</span>
+          <span class="hint">Press N to hide</span>
+        </div>
+        <div class="notes-body">
+          His hair is gray — the colour of age and experience. It is short and neat, always well-combed. Even though he looks like a man who has been through a lot, he still cares about how he looks. That tells us something about his character.
+        </div>
+      </div>
     </div>
 
-    <!-- SLIDE 6. CLOTHES -->
+    <!-- ============ SLIDE 6 ============ -->
     <div class="slide">
       <div class="file-bar">
         <span>Clothing</span>
@@ -485,9 +587,18 @@
       <div class="card orange" style="margin-top:2.5vh;">
         <p>The jacket is like a second skin — <span class="accent">you cannot imagine him without it</span>.</p>
       </div>
+      <div class="notes">
+        <div class="notes-header">
+          <span class="label">Speaker Notes · Slide 6</span>
+          <span class="hint">Press N to hide</span>
+        </div>
+        <div class="notes-body">
+          And what does he wear? He always wears a worn leather jacket. It's old, it's seen better days — but it looks good on him. It fits his character: tough, simple, and lived-in. You cannot imagine him without that jacket.
+        </div>
+      </div>
     </div>
 
-    <!-- SLIDE 7. SPECIAL FEATURES -->
+    <!-- ============ SLIDE 7 ============ -->
     <div class="slide">
       <div class="file-bar">
         <span>Identifying Marks</span>
@@ -507,9 +618,18 @@
       <div class="card green" style="margin-top:1vh;">
         <p>These two marks make him easy to recognize — <span class="accent">you can spot him at once</span>.</p>
       </div>
+      <div class="notes">
+        <div class="notes-header">
+          <span class="label">Speaker Notes · Slide 7</span>
+          <span class="hint">Press N to hide</span>
+        </div>
+        <div class="notes-body">
+          Now, the details that make him recognizable. First — <em>a small birthmark on his left cheek</em>. Second — <em>a thin scar that runs from his ear to his lip</em>. These two marks make him easy to spot in a crowd. You would recognize him at once.
+        </div>
+      </div>
     </div>
 
-    <!-- SLIDE 8. POSTURE & HABITS -->
+    <!-- ============ SLIDE 8 ============ -->
     <div class="slide">
       <div class="file-bar">
         <span>Behaviour</span>
@@ -522,9 +642,18 @@
         <li>It looks like he is trying to <span class="accent">remember something</span>.</li>
       </ul>
       <div class="quote">A small habit — but it says a lot about him.</div>
+      <div class="notes">
+        <div class="notes-header">
+          <span class="label">Speaker Notes · Slide 8</span>
+          <span class="hint">Press N to hide</span>
+        </div>
+        <div class="notes-body">
+          Let's talk about how he moves and behaves. He walks a little stooped — as if the years have caught up with him. And when he is thinking, he does something very specific: he taps his right index finger on his lips. It looks like he is trying to remember something. A small habit — but it says a lot about him.
+        </div>
+      </div>
     </div>
 
-    <!-- SLIDE 9. WHY DETAILS MATTER -->
+    <!-- ============ SLIDE 9 ============ -->
     <div class="slide">
       <div class="file-bar">
         <span>The Method</span>
@@ -544,9 +673,18 @@
       <div class="card orange" style="margin-top:1vh;">
         <p>Small details turn a person into a <span class="highlight">memorable character</span>.</p>
       </div>
+      <div class="notes">
+        <div class="notes-header">
+          <span class="label">Speaker Notes · Slide 9</span>
+          <span class="hint">Press N to hide</span>
+        </div>
+        <div class="notes-body">
+          So why do all these details matter? Because without them, Mr. Thompson would just be <em>"a middle-aged man"</em>. Boring. Forgettable. But with the eyes, the scar, the jacket, the habit — he becomes a real character. Someone with a face, a history, and a story. Small details turn a person into a memorable character.
+        </div>
+      </div>
     </div>
 
-    <!-- SLIDE 10. SUMMARY -->
+    <!-- ============ SLIDE 10 ============ -->
     <div class="slide">
       <div class="file-bar">
         <span>Summary</span>
@@ -561,9 +699,18 @@
         <li>A <span class="highlight">birthmark</span> and a <span class="highlight">scar</span>.</li>
         <li>A little <span class="highlight">stooped</span>; taps his finger when thinking.</li>
       </ul>
+      <div class="notes">
+        <div class="notes-header">
+          <span class="label">Speaker Notes · Slide 10</span>
+          <span class="hint">Press N to hide</span>
+        </div>
+        <div class="notes-body">
+          Let's put it all together. Mr. Thompson — about fifty, strong, average height. Piercing blue eyes. Gray, short, neat hair. A worn leather jacket. A birthmark on his left cheek. A scar from his ear to his lip. A little stooped. And when he thinks, he taps his finger on his lips. These small details make him <em>unforgettable</em>.
+        </div>
+      </div>
     </div>
 
-    <!-- SLIDE 11. THANK YOU -->
+    <!-- ============ SLIDE 11 ============ -->
     <div class="slide">
       <div class="file-bar">
         <span>End of File</span>
@@ -574,9 +721,18 @@
         <p class="subtitle">Any questions?</p>
         <div class="icon-row">🕵️ 👁️ 🧥 🎩</div>
       </div>
+      <div class="notes">
+        <div class="notes-header">
+          <span class="label">Speaker Notes · Slide 11</span>
+          <span class="hint">Press N to hide</span>
+        </div>
+        <div class="notes-body">
+          Thank you for your attention. I hope this short presentation showed you how <em>small details</em> can create a <em>memorable character</em>. Not just "a man" — but a real person with a face, a scar, a habit, and a story. I am happy to answer any questions.
+        </div>
+      </div>
     </div>
 
-    <!-- SLIDE 12. FINAL GIF -->
+    <!-- ============ SLIDE 12 — FINAL GIF ============ -->
     <div class="slide final-slide">
       <img src="final.gif" alt="The End" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
       <div style="display:none; color:#4a5568; text-align:center;">
@@ -584,7 +740,19 @@
         <div style="font-size:2.4vh; letter-spacing:1px;">PUT final.gif HERE</div>
       </div>
       <div class="final-caption">— The End —</div>
+      <div class="notes">
+        <div class="notes-header">
+          <span class="label">Speaker Notes · Slide 12</span>
+          <span class="hint">Press N to hide</span>
+        </div>
+        <div class="notes-body">
+          <em>(Smile and pause.)</em> That's the end of my presentation. Thank you again.
+        </div>
+      </div>
     </div>
+
+    <!-- UI -->
+    <div class="notes-badge">Press <kbd>N</kbd> for notes · <kbd>F</kbd> for fullscreen</div>
 
     <div class="controls">
       <button onclick="prev()">← Prev</button>
@@ -599,6 +767,7 @@
   const slides = document.querySelectorAll('.slide');
   const total = slides.length;
   let index = 0;
+  let notesVisible = false;
 
   document.getElementById('total').textContent = total;
 
@@ -607,12 +776,27 @@
     slides[i].classList.add('active');
     document.getElementById('current').textContent = i + 1;
     document.getElementById('progress').style.width = ((i + 1) / total * 100) + '%';
+
+    // Обновляем видимость заметок на новом слайде
+    const notes = slides[i].querySelector('.notes');
+    if (notes) {
+      notes.classList.toggle('visible', notesVisible);
+    }
   }
 
   function next() { if (index < total - 1) { index++; show(index); } }
   function prev() { if (index > 0) { index--; show(index); } }
 
+  function toggleNotes() {
+    notesVisible = !notesVisible;
+    slides.forEach(s => {
+      const notes = s.querySelector('.notes');
+      if (notes) notes.classList.toggle('visible', notesVisible);
+    });
+  }
+
   document.addEventListener('keydown', e => {
+    // Не мешаем работать со слайдами, если фокус в поле (не наш случай, но на всякий)
     if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown' || e.key === 'Enter') {
       e.preventDefault(); next();
     }
@@ -621,6 +805,9 @@
     }
     if (e.key === 'Home') { index = 0; show(0); }
     if (e.key === 'End')  { index = total - 1; show(index); }
+    if (e.key === 'n' || e.key === 'N') {
+      e.preventDefault(); toggleNotes();
+    }
     if (e.key === 'f' || e.key === 'F' || e.key === 'F11') {
       e.preventDefault();
       if (!document.fullscreenElement) document.documentElement.requestFullscreen();
